@@ -88,7 +88,6 @@ class InfernoAdapter extends EnzymeAdapter {
       },
 
       getNode() {
-        console.log(JSON.stringify(RSTNode, null, 2));
         return RSTNode ? RSTNode.rendered : null;
       },
 
