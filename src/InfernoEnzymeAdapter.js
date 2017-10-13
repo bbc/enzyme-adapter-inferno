@@ -46,6 +46,17 @@ function upperCasefirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function isComponent(type) {
+  return type.name;
+}
+
+function getVnode(type) {
+  if (isComponent(type)) {
+    return new type().render(); // eslint-disable-line new-cap
+  }
+  return type();
+}
+
 class InfernoAdapter extends EnzymeAdapter {
   createMountRenderer() {
     let RSTNode = null;
@@ -53,7 +64,7 @@ class InfernoAdapter extends EnzymeAdapter {
     return {
       render(el, context, callback) {
         if (RSTNode === null) {
-          const vnode = el.type();
+          const vnode = getVnode(el.type);
           const props = {
             ...vnode.props,
             className: vnode.className,
