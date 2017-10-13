@@ -69,8 +69,8 @@ class InfernoAdapter extends EnzymeAdapter {
         return RSTNode ? RSTNode.rendered : null;
       },
 
-      simulateEvent(node, event) {
-        node.props[`on${upperCasefirst(event)}`]();
+      simulateEvent(node, event, ...args) {
+        node.props[`on${upperCasefirst(event)}`](...args);
       },
 
       batchedUpdates(fn) {

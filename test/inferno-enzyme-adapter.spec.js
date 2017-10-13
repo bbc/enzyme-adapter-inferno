@@ -23,17 +23,40 @@ describe('preact-enzyme-adapter', () => {
 
   it('can simulate clicks', () => {
     const stub = jest.fn();
-    const stub2 = jest.fn();
 
     const App = () => (
-       <div onClick={stub} onChange={stub2} />
+       <div onClick={stub} />
     );
 
     const wrapper = Enzyme.mount(<App />);
     wrapper.simulate('click');
+
+    expect(stub).toHaveBeenCalled();
+  });
+
+  it('can simulate change', () => {
+    const stub = jest.fn();
+
+    const App = () => (
+       <div onChange={stub} />
+    );
+
+    const wrapper = Enzyme.mount(<App />);
     wrapper.simulate('change');
 
     expect(stub).toHaveBeenCalled();
-    expect(stub2).toHaveBeenCalled();
+  });
+
+  it('calls event with args', () => {
+    const stub = jest.fn();
+
+    const App = () => (
+       <div onClick={stub} />
+    );
+    const argumentObj = { event: {} };
+    const wrapper = Enzyme.mount(<App />);
+    wrapper.simulate('click', argumentObj);
+
+    expect(stub).toHaveBeenCalledWith(argumentObj);
   });
 });
