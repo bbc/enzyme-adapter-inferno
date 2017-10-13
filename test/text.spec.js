@@ -4,7 +4,7 @@ import InfernoAdapter from '../src/InfernoEnzymeAdapter';
 
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
-describe('text', () => {
+describe.skip('text', () => {
   it('traverses the render tree', () => {
     const text = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.';
     const App = () => (
