@@ -4,7 +4,7 @@ import InfernoAdapter from '../../src/InfernoEnzymeAdapter';
 
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
-describe('shallow.simulate', () => {
+describe('mount.simulate', () => {
   it('simulates clicks', () => {
     const stub = jest.fn();
 
@@ -12,7 +12,7 @@ describe('shallow.simulate', () => {
        <div onClick={stub} />
     );
 
-    const wrapper = Enzyme.shallow(<App />);
+    const wrapper = Enzyme.mount(<App />);
     wrapper.simulate('click');
 
     expect(stub).toHaveBeenCalled();
@@ -25,7 +25,7 @@ describe('shallow.simulate', () => {
        <div onChange={stub} />
     );
 
-    const wrapper = Enzyme.shallow(<App />);
+    const wrapper = Enzyme.mount(<App />);
     wrapper.simulate('change');
 
     expect(stub).toHaveBeenCalled();
@@ -38,7 +38,7 @@ describe('shallow.simulate', () => {
        <div onClick={stub} />
     );
     const argumentObj = { event: {} };
-    const wrapper = Enzyme.shallow(<App />);
+    const wrapper = Enzyme.mount(<App />);
     wrapper.simulate('click', argumentObj);
 
     expect(stub).toHaveBeenCalledWith(argumentObj);

@@ -5,7 +5,7 @@ import InfernoAdapter from '../../src/InfernoEnzymeAdapter';
 
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
-describe('shallow.find', () => {
+describe('mount.find', () => {
   it('traverses the render tree', () => {
     const App = () => (
       <div>
@@ -16,7 +16,7 @@ describe('shallow.find', () => {
       </div>
     );
 
-    const wrapper = Enzyme.shallow(<App />);
+    const wrapper = Enzyme.mount(<App />);
     expect(wrapper.find('div').length).toBe(1);
     expect(wrapper.find('h1[id="bar"]').length).toBe(1);
     expect(wrapper.find('h1').is('h1')).toBe(true);
@@ -33,7 +33,7 @@ describe('shallow.find', () => {
       </div>
     );
 
-    const wrapper = Enzyme.shallow(<App />);
+    const wrapper = Enzyme.mount(<App />);
     expect(wrapper.find('div').length).toBe(5);
   });
 
@@ -48,7 +48,7 @@ describe('shallow.find', () => {
       }
     }
 
-    const wrapper = Enzyme.shallow(<MyComponent />);
+    const wrapper = Enzyme.mount(<MyComponent />);
     expect(wrapper.find('div').length).toBe(1);
   });
 });
