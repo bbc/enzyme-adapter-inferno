@@ -1,7 +1,7 @@
 import Enzyme from 'enzyme';
 import Inferno from 'inferno';
-import InfernoAdapter from '../src/InfernoEnzymeAdapter';
 import Component from 'inferno-component';
+import InfernoAdapter from '../src/InfernoEnzymeAdapter';
 
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
@@ -37,7 +37,7 @@ describe('find', () => {
     expect(wrapper.find('div').length).toBe(5);
   });
 
-  it.only('handles components', () => {
+  it('handles components', () => {
     class MyComponent extends Component {
       render() {
         return (

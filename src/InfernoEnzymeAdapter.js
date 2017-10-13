@@ -46,15 +46,12 @@ function upperCasefirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function isComponent(type) {
-  return type.name;
-}
-
 function getVnode(type) {
-  if (isComponent(type)) {
+  try {
+    return type();
+  } catch (err) {
     return new type().render(); // eslint-disable-line new-cap
   }
-  return type();
 }
 
 class InfernoAdapter extends EnzymeAdapter {
