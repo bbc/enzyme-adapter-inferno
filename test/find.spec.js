@@ -20,4 +20,19 @@ describe('find', () => {
     expect(wrapper.find('h1[id="bar"]').length).toBe(1);
     expect(wrapper.find('h1').is('h1')).toBe(true);
   });
+
+  it('finds multiple children', () => {
+    const App = () => (
+      <div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+
+    const wrapper = Enzyme.mount(<App />);
+    expect(wrapper.find('div').length).toBe(5);
+  });
 });

@@ -18,6 +18,19 @@ function vNodeToRSTTree(vnode) {
       rendered,
     };
   }
+
+  if (vnode.children) {
+    return {
+      nodeType: 'host',
+      type: vnode.type,
+      props,
+      key: vnode.key,
+      ref: vnode.ref,
+      instance: null,
+      rendered: vNodeToRSTTree(vnode.children),
+    };
+  }
+
   return {
     nodeType: 'host',
     type: vnode.type,
