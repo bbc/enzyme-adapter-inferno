@@ -1,6 +1,6 @@
 import Enzyme from 'enzyme';
 import Inferno from 'inferno';
-import InfernoAdapter from '../src';
+import InfernoAdapter from '../src/InfernoEnzymeAdapter';
 
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
