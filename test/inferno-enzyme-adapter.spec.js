@@ -16,7 +16,7 @@ const App = () => (
 describe('preact-enzyme-adapter', () => {
   it('should work', () => {
     const wrapper = Enzyme.mount(<App />);
-    expect(wrapper.find('h1 + span.foo').length).toBe(1);
+    expect(wrapper.find('div').length).toBe(1);
     expect(wrapper.find('h1[id="bar"]').length).toBe(1);
     expect(wrapper.find('h1').is('h1')).toBe(true);
   });
