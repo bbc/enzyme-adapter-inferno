@@ -10,7 +10,7 @@ function vNodeToRSTTree(vnode) {
   if (vnode.children && Array.isArray(vnode.children)) {
     const rendered = vnode.children.map(vNodeToRSTTree);
     return {
-      nodeType: 'function',
+      nodeType: 'host',
       type: vnode.type,
       props,
       key: vnode.key,
@@ -22,7 +22,7 @@ function vNodeToRSTTree(vnode) {
 
   if (vnode.children) {
     return {
-      nodeType: 'function',
+      nodeType: 'host',
       type: vnode.type,
       props,
       key: vnode.key,
@@ -33,7 +33,7 @@ function vNodeToRSTTree(vnode) {
   }
 
   return {
-    nodeType: 'function',
+    nodeType: 'host',
     type: vnode.type,
     props,
     key: vnode.key,
@@ -73,7 +73,7 @@ class InfernoAdapter extends EnzymeAdapter {
             props,
             key: vnode.key,
             ref: vnode.ref,
-            instance: vnode.type,
+            instance: null,
             rendered: vNodeToRSTTree(vnode),
           };
 
@@ -88,6 +88,7 @@ class InfernoAdapter extends EnzymeAdapter {
       },
 
       getNode() {
+        console.log(JSON.stringify(RSTNode, null, 2));
         return RSTNode ? RSTNode.rendered : null;
       },
 
@@ -100,7 +101,7 @@ class InfernoAdapter extends EnzymeAdapter {
   createRenderer(options) {
     switch (options.mode) {
       case EnzymeAdapter.MODES.MOUNT: return this.createMountRenderer(options);
-      case EnzymeAdapter.MODES.SHALLOW: return throwError('shallow is not yet implemented');
+      case EnzymeAdapter.MODES.SHALLOW: return this.createMountRenderer(options);
       case EnzymeAdapter.MODES.RENDER: return throwError('render is not yet implemented');
       default:
         throw new Error(`Enzyme Internal Error: Unrecognized mode: ${options.mode}`);
