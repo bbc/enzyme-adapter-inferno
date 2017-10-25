@@ -5,7 +5,7 @@ import InfernoAdapter from '../../src/InfernoEnzymeAdapter';
 
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
-describe('shallow.find', () => {
+describe.skip('shallow.find', () => {
   it('traverses the render tree', () => {
     const App = () => (
       <div>

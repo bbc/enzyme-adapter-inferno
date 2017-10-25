@@ -4,7 +4,7 @@ import InfernoAdapter from '../../src/InfernoEnzymeAdapter';
 
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
-describe('shallow.simulate', () => {
+describe.skip('shallow.simulate', () => {
   it('simulates clicks', () => {
     const stub = jest.fn();
 

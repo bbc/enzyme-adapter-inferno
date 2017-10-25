@@ -1,94 +1,32 @@
 import { EnzymeAdapter } from 'enzyme';
+import Inferno from 'inferno';
 import { throwError } from './util';
-
-function vNodeToRSTTree(vnode) {
-  const props = {
-    ...vnode.props,
-    className: vnode.className,
-  };
-
-  if (vnode.children && Array.isArray(vnode.children)) {
-    const rendered = vnode.children.map(vNodeToRSTTree);
-    return {
-      nodeType: 'host',
-      type: vnode.type,
-      props,
-      key: vnode.key,
-      ref: vnode.ref,
-      instance: null,
-      rendered,
-    };
-  }
-
-  if (vnode.children) {
-    return {
-      nodeType: 'host',
-      type: vnode.type,
-      props,
-      key: vnode.key,
-      ref: vnode.ref,
-      instance: null,
-      rendered: vNodeToRSTTree(vnode.children),
-    };
-  }
-
-  return {
-    nodeType: 'host',
-    type: vnode.type,
-    props,
-    key: vnode.key,
-    ref: vnode.ref,
-    instance: null,
-    rendered: null,
-  };
-}
+import vNodeToRSTTree from './vNodeToRSTTree';
 
 function upperCasefirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function getVnode(type) {
-  try {
-    return type();
-  } catch (err) {
-    return new type().render(); // eslint-disable-line new-cap
-  }
-}
-
 class InfernoAdapter extends EnzymeAdapter {
   createMountRenderer() {
-    let RSTNode = null;
+    const domNode = global.document.createElement('div');
+    let instance = null;
     return {
-      render(el, context, callback) {
-        if (RSTNode === null) {
-          const vnode = getVnode(el.type);
-          const props = {
-            ...vnode.props,
-            className: vnode.className,
-          };
-
-          RSTNode = {
-            nodeType: 'host',
-            type: vnode.type,
-            props,
-            key: vnode.key,
-            ref: vnode.ref,
-            instance: null,
-            rendered: vNodeToRSTTree(vnode),
-          };
-
-          if (typeof callback === 'function') {
-            callback();
-          }
-        }
+      render(el) {
+        instance = Inferno.render(el, domNode);
       },
 
       unmount() {
-        RSTNode = null;
+        instance = null;
       },
 
       getNode() {
-        return RSTNode ? RSTNode.rendered : null;
+        if (instance._vNode) {
+          console.log(JSON.stringify(vNodeToRSTTree(instance._vNode), null, 2));
+
+          return instance ? vNodeToRSTTree(instance._vNode) : null;
+        }
+        return instance ? vNodeToRSTTree(instance) : null;
       },
 
       simulateEvent(node, event, ...args) {

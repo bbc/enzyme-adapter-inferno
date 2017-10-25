@@ -5,7 +5,7 @@ import InfernoAdapter from '../../src/InfernoEnzymeAdapter';
 
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
-describe('mount.find', () => {
+describe.only('mount.find', () => {
   it('traverses the render tree', () => {
     const App = () => (
       <div>
