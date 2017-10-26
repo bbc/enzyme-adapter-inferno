@@ -20,20 +20,19 @@ export default function vNodeToRSTTree(vnode) {
       props,
       key: vnode.key,
       ref: vnode.ref,
-      instance: null,
+      instance: vnode,
       rendered,
     };
   }
 
   if (vnode.children) {
-    console.log('sada', vNodeToRSTTree(vnode.children));
     return {
       nodeType: 'host',
       type: getType(vnode),
       props,
       key: vnode.key,
       ref: vnode.ref,
-      instance: null,
+      instance: vnode,
       rendered: vNodeToRSTTree(vnode.children),
     };
   }
@@ -44,7 +43,7 @@ export default function vNodeToRSTTree(vnode) {
     props,
     key: vnode.key,
     ref: vnode.ref,
-    instance: null,
+    instance: vnode,
     rendered: null,
   };
 }

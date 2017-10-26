@@ -5,7 +5,7 @@ import InfernoAdapter from '../../src/InfernoEnzymeAdapter';
 Enzyme.configure({ adapter: new InfernoAdapter() });
 
 describe('text', () => {
-  it.skip('traverses the render tree', () => {
+  it('traverses the render tree', () => {
     const text = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.';
     const App = () => (
       <div>
@@ -17,6 +17,6 @@ describe('text', () => {
     );
 
     const wrapper = Enzyme.mount(<App />);
-    expect(wrapper.text()).toBe(text);
+    expect(wrapper.find('.foo').text()).toBe(text);
   });
 });

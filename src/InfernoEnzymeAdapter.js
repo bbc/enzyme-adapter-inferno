@@ -8,6 +8,10 @@ function upperCasefirst(string) {
 }
 
 class InfernoAdapter extends EnzymeAdapter {
+  nodeToHostNode(node) {
+    return node.instance.dom;
+  }
+
   createMountRenderer() {
     const domNode = global.document.createElement('div');
     let instance = null;
@@ -22,8 +26,6 @@ class InfernoAdapter extends EnzymeAdapter {
 
       getNode() {
         if (instance._vNode) {
-          console.log(JSON.stringify(vNodeToRSTTree(instance._vNode), null, 2));
-
           return instance ? vNodeToRSTTree(instance._vNode) : null;
         }
         return instance ? vNodeToRSTTree(instance) : null;
