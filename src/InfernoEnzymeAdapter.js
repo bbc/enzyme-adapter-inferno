@@ -1,10 +1,15 @@
 import { EnzymeAdapter } from 'enzyme';
 import Inferno from 'inferno';
+import VNodeFlags from 'inferno-vnode-flags';
 import { throwError } from './util';
-import vNodeToRSTTree from './vNodeToRSTTree';
+import elementToTree from './elementToTree';
 
 function upperCasefirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function isFunctionComponent(el) {
+  return el.flags & VNodeFlags.ComponentFunction;
 }
 
 class InfernoAdapter extends EnzymeAdapter {
@@ -17,6 +22,11 @@ class InfernoAdapter extends EnzymeAdapter {
     let instance = null;
     return {
       render(el) {
+        if (isFunctionComponent(el)) {
+          Inferno.render(el, domNode);
+          instance = el;
+          return;
+        }
         instance = Inferno.render(el, domNode);
       },
 
@@ -26,9 +36,9 @@ class InfernoAdapter extends EnzymeAdapter {
 
       getNode() {
         if (instance._vNode) {
-          return instance ? vNodeToRSTTree(instance._vNode) : null;
+          return instance ? elementToTree(instance._vNode) : null;
         }
-        return instance ? vNodeToRSTTree(instance) : null;
+        return instance ? elementToTree(instance) : null;
       },
 
       simulateEvent(node, event, ...args) {

@@ -1,6 +1,7 @@
 {
   "extends": "../.eslintrc",
   "env": {
-    "jest": true
-  }
+    "mocha": true,
+    "browser": true
+  },
 }
