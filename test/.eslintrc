@@ -4,4 +4,8 @@
     "mocha": true,
     "browser": true
   },
+  "rules": {
+    "inferno/jsx-key": 0,
+    "inferno/no-string-refs": 0
+  }
 }
