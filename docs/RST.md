@@ -12,7 +12,7 @@ You can see the structure of an RST node below:
 
 ```js
 {
-  nodeType: string,
+  nodeType: 'class' | 'function' | 'host',
   type: string,
   props: Object,
   key: string | null,
@@ -24,7 +24,7 @@ You can see the structure of an RST node below:
 
 ### nodeType
 
-Can be `host`, `text`
+The nodeType, this is used by enzyme to determine how to interact with the RST node.
 
 ### type
 
