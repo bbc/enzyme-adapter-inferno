@@ -17,6 +17,10 @@ class InfernoAdapter extends EnzymeAdapter {
     return node.instance.dom;
   }
 
+  elementToNode(el) {
+    return elementToTree(el);
+  }
+
   createMountRenderer() {
     const domNode = global.document.createElement('div');
     let instance = null;
@@ -36,9 +40,9 @@ class InfernoAdapter extends EnzymeAdapter {
 
       getNode() {
         if (instance._vNode) {
-          return instance ? elementToTree(instance._vNode) : null;
+          return instance ? elementToTree(instance._vNode, instance) : null;
         }
-        return instance ? elementToTree(instance) : null;
+        return instance ? elementToTree(instance, instance) : null;
       },
 
       simulateEvent(node, event, ...args) {

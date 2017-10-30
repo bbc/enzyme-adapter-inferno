@@ -36,7 +36,7 @@ function renderToString(el) {
   return tree.innerHTML;
 }
 
-describe.skip('adapter', () => {
+describe('adapter', () => {
   describe('mounted render', () => {
     function hydratedTreeMatchesUnhydrated(element) {
       const markup = renderToString(element);
@@ -65,7 +65,7 @@ describe.skip('adapter', () => {
       expect(prettyFormat(nodeA)).to.equal(prettyFormat(nodeB));
     }
 
-    it('hydrated trees match unhydrated trees', () => {
+    it.skip('hydrated trees match unhydrated trees', () => {
       class Bam extends Component {
         render() { return (<div>{this.props.children}</div>); }
       }
@@ -91,7 +91,7 @@ describe.skip('adapter', () => {
       hydratedTreeMatchesUnhydrated(<Four />);
     });
 
-    it('treats mixed children correctly', () => {
+    it.skip('treats mixed children correctly', () => {
       class Foo extends Component {
         render() {
           return (
@@ -132,7 +132,7 @@ describe.skip('adapter', () => {
       }));
     });
 
-    it('treats null renders correctly', () => {
+    it.skip('treats null renders correctly', () => {
       class Foo extends Component {
         render() {
           return null;
@@ -190,7 +190,7 @@ describe.skip('adapter', () => {
       }));
     });
 
-    it('renders simple components returning host components', () => {
+    it.skip('renders simple components returning host components', () => {
       const options = { mode: 'mount' };
       const renderer = adapter.createRenderer(options);
 
@@ -227,7 +227,7 @@ describe.skip('adapter', () => {
       }));
     });
 
-    it('handles null rendering components', () => {
+    it.skip('handles null rendering components', () => {
       const options = { mode: 'mount' };
       const renderer = adapter.createRenderer(options);
 
@@ -257,7 +257,7 @@ describe.skip('adapter', () => {
     });
 
 
-    it('renders complicated trees of composites and hosts', () => {
+    it.skip('renders complicated trees of composites and hosts', () => {
       // SFC returning host. no children props.
       const Qoo = () => <span className="Qoo">Hello World!</span>;
 
@@ -367,7 +367,7 @@ describe.skip('adapter', () => {
       }));
     });
 
-    it('renders complicated trees of composites and hosts', () => {
+    it.skip('renders complicated trees of composites and hosts', () => {
       // class returning host. no children props.
       class Qoo extends Component {
         render() {
@@ -488,7 +488,7 @@ describe.skip('adapter', () => {
     });
   });
 
-  it('render node with updated props', () => {
+  it.skip('render node with updated props', () => {
     class Dummy extends Component {
       render() {
         return null;

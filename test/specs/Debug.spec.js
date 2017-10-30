@@ -15,7 +15,7 @@ const adapter = new InfernoEnzymeAdapter();
 
 const debugElement = element => debugNode(adapter.elementToNode(element));
 
-describe.skip('debug', () => {
+describe('debug', () => {
   describe('spaces(n)', () => {
     it('should return n spaces', () => {
       expect(spaces(4)).to.equal('    ');
@@ -53,7 +53,7 @@ describe.skip('debug', () => {
 </div>`);
     });
 
-    it('should render mixed children', () => {
+    it.skip('should render mixed children', () => {
       expect(debugElement(<div>hello{'world'}</div>)).to.equal(`<div>
   hello
   world
@@ -109,7 +109,7 @@ describe.skip('debug', () => {
 </div>`);
     });
 
-    it('should render mapped children properly', () => {
+    it.skip('should render mapped children properly', () => {
       expect(debugElement(<div>
           <i>not in array</i>
           {['a', 'b', 'c']}
@@ -123,7 +123,7 @@ describe.skip('debug', () => {
 </div>`);
     });
 
-    it('should render number children properly', () => {
+    it.skip('should render number children properly', () => {
       expect(debugElement(<div>
           {-1}
           {0}
@@ -141,7 +141,7 @@ describe.skip('debug', () => {
 </div>`);
     });
 
-    it('should not render falsy children ', () => {
+    it.skip('should not render falsy children ', () => {
       expect(debugElement(<div id="foo">
           {false}
           {null}
@@ -152,7 +152,7 @@ describe.skip('debug', () => {
   });
 
   describe('debugInst(inst)', () => {
-    it('renders basic debug of mounted components', () => {
+    it.skip('renders basic debug of mounted components', () => {
       class Foo extends Component {
         render() {
           return (
@@ -171,7 +171,7 @@ describe.skip('debug', () => {
 </Foo>`);
     });
 
-    it('renders basic debug of components with mixed children', () => {
+    it.skip('renders basic debug of components with mixed children', () => {
       class Foo extends Component {
         render() {
           return (
@@ -187,7 +187,7 @@ describe.skip('debug', () => {
 </Foo>`);
     });
 
-    it('renders debug of compositional components', () => {
+    it.skip('renders debug of compositional components', () => {
       class Foo extends Component {
         render() {
           return (
@@ -223,7 +223,7 @@ describe.skip('debug', () => {
 </Bar>`);
     });
 
-    it('renders a subtree of a mounted tree', () => {
+    it.skip('renders a subtree of a mounted tree', () => {
       class Foo extends Component {
         render() {
           return (
@@ -252,7 +252,7 @@ describe.skip('debug', () => {
 </Foo>`);
     });
 
-    it('renders passed children properly', () => {
+    it.skip('renders passed children properly', () => {
       class Foo extends Component {
         render() {
           return (
@@ -292,7 +292,7 @@ describe.skip('debug', () => {
     });
 
     describe('stateless function components', () => {
-      it('renders basic debug of mounted components', () => {
+      it.skip('renders basic debug of mounted components', () => {
         const Foo = () => (
           <div className="foo">
             <span>Foo</span>
@@ -335,7 +335,7 @@ describe.skip('debug', () => {
 </Bar>`);
       });
 
-      it('renders a subtree of a mounted tree', () => {
+      it.skip('renders a subtree of a mounted tree', () => {
         const Foo = () => (
           <div className="foo">
             <span>Foo</span>
@@ -390,7 +390,7 @@ describe.skip('debug', () => {
     });
   });
 
-  describe('shallow', () => {
+  describe.skip('shallow', () => {
     it('renders shallow wrapper properly', () => {
       class Foo extends Component {
         render() {
@@ -425,7 +425,7 @@ describe.skip('debug', () => {
   });
 
   describe('debugNodes', () => {
-    it('can render a single node', () => {
+    it.skip('can render a single node', () => {
       class Foo extends Component {
         render() {
           return (
@@ -443,7 +443,7 @@ describe.skip('debug', () => {
 </div>`);
     });
 
-    it('can render multiple nodes', () => {
+    it.skip('can render multiple nodes', () => {
       class Foo extends Component {
         render() {
           return (
@@ -475,7 +475,7 @@ describe.skip('debug', () => {
 <Foo />`);
     });
 
-    it('can render multiple nodes with indent', () => {
+    it.skip('can render multiple nodes with indent', () => {
       class Foo extends Component {
         render() {
           return (
@@ -504,8 +504,8 @@ describe.skip('debug', () => {
     });
   });
 
-  describe('debug shallow wrapper', () => {
-    it('options.ignoreProps causes props to be omitted', () => {
+  describe.skip('debug shallow wrapper', () => {
+    it.skip('options.ignoreProps causes props to be omitted', () => {
       class Foo extends Component {
         render() {
           return (
@@ -544,7 +544,7 @@ describe.skip('debug', () => {
   });
 
   describe('debug React wrapper', () => {
-    it('options.ignoreProps causes props to be omitted', () => {
+    it.skip('options.ignoreProps causes props to be omitted', () => {
       class Foo extends Component {
         render() {
           return (
