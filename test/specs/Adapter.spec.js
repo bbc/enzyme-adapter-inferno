@@ -159,7 +159,7 @@ describe('adapter', () => {
       }));
     });
 
-    it('renders simple components returning host components', () => {
+    it.skip('renders simple components returning host components', () => {
       const options = { mode: 'mount' };
       const renderer = adapter.createRenderer(options);
 

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {
   ComponentClass,
   ComponentFunction,
@@ -42,15 +44,25 @@ function flatten(arrs) {
   );
 }
 
+function getInstance(el) {
+  if (el.flags & ComponentFunction) {
+    return null;
+  }
+  //
+  // if (el.flags & ComponentClass) {
+  //   return el.children;
+  // }
+
+  return el.dom;
+}
+
 export default function elementToTree(el) {
   if (el === null || typeof el !== 'object' || !('type' in el)) {
     return [el];
   }
-  const { key, ref } = el;
   const props = {
     ...el.props,
   };
-
   if (el.className) {
     props.className = el.className;
   }
@@ -62,11 +74,11 @@ export default function elementToTree(el) {
   }
   return {
     nodeType: getNodeType(el.flags),
-    type: getType(el),
+    type: el.type,
     props,
-    key,
-    ref,
-    instance: null,
+    key: el.key,
+    ref: el.ref,
+    instance: el.dom,
     rendered,
   };
 }

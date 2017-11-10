@@ -15,7 +15,7 @@ const adapter = new InfernoEnzymeAdapter();
 
 const debugElement = element => debugNode(adapter.elementToNode(element));
 
-describe('debug', () => {
+describe.skip('debug', () => {
   describe('spaces(n)', () => {
     it('should return n spaces', () => {
       expect(spaces(4)).to.equal('    ');
