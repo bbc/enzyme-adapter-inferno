@@ -440,6 +440,7 @@ describe('mount', () => {
       const wrapper = mount(<div>
           <Foo className="foo" />
         </div>);
+
       expect(wrapper.find(Foo).type()).to.equal(Foo);
     });
 
@@ -713,6 +714,7 @@ describe('mount', () => {
         const wrapper = mount(<div>
             <Foo className="foo" />
           </div>);
+
         expect(wrapper.find('Foo').type()).to.equal(Foo);
       });
 
@@ -794,7 +796,7 @@ describe('mount', () => {
       expect(spy.args[3][0].hasClass('bux')).to.equal(true);
     });
 
-    it.skip('finds nodes', () => {
+    it('finds nodes', () => {
       class Foo extends Component {
         render() {
           return (
@@ -819,7 +821,7 @@ describe('mount', () => {
       expect(foundNotSpan.type()).to.equal('i');
     });
 
-    it.skip('finds nodes when conditionally rendered', () => {
+    it('finds nodes when conditionally rendered', () => {
       class Foo extends Component {
         render() {
           return (
@@ -1834,7 +1836,7 @@ describe('mount', () => {
   });
 
   describe('.state(name)', () => {
-    it.skip('should return the state object', () => {
+    it('should return the state object', () => {
       class Foo extends Component {
         constructor(props) {
           super(props);
@@ -1846,7 +1848,7 @@ describe('mount', () => {
       expect(wrapper.state()).to.eql({ foo: 'foo' });
     });
 
-    it.skip('should return the current state after state transitions', () => {
+    it('should return the current state after state transitions', () => {
       class Foo extends Component {
         constructor(props) {
           super(props);
@@ -1859,7 +1861,7 @@ describe('mount', () => {
       expect(wrapper.state()).to.eql({ foo: 'bar' });
     });
 
-    it.skip('should allow a state property name be passed in as an argument', () => {
+    it('should allow a state property name be passed in as an argument', () => {
       class Foo extends Component {
         constructor(props) {
           super(props);
@@ -1902,7 +1904,7 @@ describe('mount', () => {
       expect(wrapper.children().at(1).hasClass('baz')).to.equal(true);
     });
 
-    it.skip('should handle mixed children with and without arrays', () => {
+    it('should handle mixed children with and without arrays', () => {
       class Foo extends Component {
         render() {
           return (
@@ -1944,7 +1946,7 @@ describe('mount', () => {
     });
 
     describe('stateless function components', () => {
-      it.skip('should handle mixed children with and without arrays', () => {
+      it('should handle mixed children with and without arrays', () => {
         const Foo = props => (
           <div>
             <span className="foo" />
@@ -2108,7 +2110,7 @@ describe('mount', () => {
 
   describe('.hasClass(className)', () => {
     context('When using a DOM component', () => {
-      it.skip('should return whether or not node has a certain class', () => {
+      it('should return whether or not node has a certain class', () => {
         const wrapper = mount(<div className="foo bar baz some-long-string FoOo" />);
 
         expect(wrapper.hasClass('foo')).to.equal(true);
@@ -2142,7 +2144,7 @@ describe('mount', () => {
     });
 
     context('When using a Composite class component', () => {
-      it.skip('should return whether or not node has a certain class', () => {
+      it('should return whether or not node has a certain class', () => {
         class Foo extends Component {
           render() {
             return (<div className="foo bar baz some-long-string FoOo" />);
@@ -2611,7 +2613,7 @@ describe('mount', () => {
   });
 
   describe('.get(index)', () => {
-    it.skip('gets the node at the specified index', () => {
+    it('gets the node at the specified index', () => {
       const wrapper = mount(<div>
           <div className="bar foo" />
           <div className="bar bax" />
@@ -2648,14 +2650,14 @@ describe('mount', () => {
   });
 
   describe('.html()', () => {
-    it.skip('should return html of straight DOM elements', () => {
+    it('should return html of straight DOM elements', () => {
       const wrapper = mount(<div className="test">
           <span>Hello World!</span>
         </div>);
       expect(wrapper.html()).to.equal('<div class="test"><span>Hello World!</span></div>');
     });
 
-    it.skip('should render out nested composite components', () => {
+    it('should render out nested composite components', () => {
       class Foo extends Component {
         render() {
           return (<div className="in-foo" />);
@@ -2676,7 +2678,7 @@ describe('mount', () => {
     });
 
     describe('stateless function components', () => {
-      it.skip('should render out nested composite components', () => {
+      it('should render out nested composite components', () => {
         const Foo = () => <div className="in-foo" />;
         const Bar = () => (
           <div className="in-bar">
@@ -3373,7 +3375,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.getDOMNode', () => {
+  describe('.getDOMNode', () => {
     class Test extends Component {
       render() {
         return (
@@ -3389,11 +3391,13 @@ describe('mount', () => {
 
     it('should return the outermost DOMComponent of the root wrapper', () => {
       const wrapper = mount(<Test />);
+
       expect(wrapper.getDOMNode()).to.have.property('className', 'outer');
     });
 
     it('should return the outermost DOMComponent of the inner div wrapper', () => {
       const wrapper = mount(<Test />);
+
       expect(wrapper.find('.inner').getDOMNode()).to.have.property('className', 'inner');
     });
 

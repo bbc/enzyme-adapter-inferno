@@ -65,7 +65,7 @@ describe('selectors', () => {
         expect(wrapper.find('div .inner span .way-inner h1')).to.have.lengthOf(1);
       });
 
-      it.skip('direct descendent', () => {
+      it('direct descendent', () => {
         const wrapper = renderMethod(<div>
             <div className="container">
               <div className="to-find">Direct</div>
@@ -82,7 +82,7 @@ describe('selectors', () => {
         expect(descendent.text()).to.equal('Direct');
       });
 
-      it.skip('simple adjacent', () => {
+      it('simple adjacent', () => {
         const wrapper = renderMethod(<div>
             <div className="to-find" />
             <div className="sibling">Adjacent</div>
@@ -95,7 +95,7 @@ describe('selectors', () => {
         expect(toFind.text()).to.equal('Adjacent');
       });
 
-      it.skip('simple adjacent with arrays', () => {
+      it('simple adjacent with arrays', () => {
         const wrapper = renderMethod(<div>
             <div className="to-find" />
             {[<div key="0" className="sibling">Adjacent</div>]}
@@ -105,7 +105,7 @@ describe('selectors', () => {
         expect(toFind.text()).to.equal('Adjacent');
       });
 
-      it.skip('nested adjacent', () => {
+      it('nested adjacent', () => {
         const wrapper = renderMethod(<div>
             <div className="to-find" />
             <div className="sibling">Adjacent</div>
@@ -139,7 +139,7 @@ describe('selectors', () => {
         expect(wrapper.find('.to-find ~ span')).to.have.lengthOf(3);
       });
 
-      it.skip('nested general siblings', () => {
+      it('nested general siblings', () => {
         const wrapper = renderMethod(<div>
             <span>Top</span>
             <span />
@@ -193,7 +193,7 @@ describe('selectors', () => {
         expect(wrapper.find('.foo + div > span')).to.have.lengthOf(1);
       });
 
-      it.skip('.foo + .foo + .foo', () => {
+      it('.foo + .foo + .foo', () => {
         const wrapper = renderMethod(<div>
             <div className="foo">foo1</div>
             <div className="foo">foo2</div>

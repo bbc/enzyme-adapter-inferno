@@ -53,9 +53,6 @@ class InfernoAdapter extends EnzymeAdapter {
       },
 
       getNode() {
-        if (instance && instance._vNode) {
-          return instance ? toTree(instance) : null;
-        }
         return instance ? toTree(instance) : null;
       },
 

@@ -1,5 +1,6 @@
 import {
   ComponentFunction,
+  ClassComponent,
 } from 'inferno-vnode-flags';
 
 function getNodeType(el) {
@@ -7,7 +8,7 @@ function getNodeType(el) {
     return 'function';
   }
 
-  if (el._vNode) {
+  if (el._vNode || el.flags & ClassComponent || el.flags === 4) {
     return 'class';
   }
 
@@ -30,7 +31,7 @@ function childrenToTree(node) {
 }
 
 export default function toTree(el) {
-  if (el === null || typeof el !== 'object' || !('type' in el)) {
+  if (el === null || typeof el !== 'object') {
     return [el];
   }
 
@@ -45,6 +46,17 @@ export default function toTree(el) {
   const nodeType = getNodeType(el);
 
   if (nodeType === 'class') {
+    if (!el._vNode) {
+      return {
+        nodeType,
+        type: el.type,
+        props,
+        key: el.key,
+        refs: el.key,
+        instance: el.children,
+        rendered: toTree(el.children._lastInput),
+      };
+    }
     return {
       nodeType,
       type: el._vNode.type,
@@ -52,7 +64,7 @@ export default function toTree(el) {
       key: el._vNode.key,
       ref: el._vNode.key,
       instance: el,
-      rendered: childrenToTree(el._lastInput),
+      rendered: toTree(el._lastInput),
     };
   }
   return {
