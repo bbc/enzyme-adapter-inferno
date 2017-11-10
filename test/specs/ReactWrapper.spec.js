@@ -2990,7 +2990,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.containsMatchingElement(node)', () => {
+  describe('.containsMatchingElement(node)', () => {
     it('should match a root node that looks like the rendered one', () => {
       const spy1 = sinon.spy();
       const spy2 = sinon.spy();
@@ -3043,7 +3043,7 @@ describe('mount', () => {
       expect(spy2.callCount).to.equal(0);
     });
 
-    it('should not match on a single node that doesn\'t looks like a rendered one', () => {
+    it.skip('should not match on a single node that doesn\'t looks like a rendered one', () => {
       const spy1 = sinon.spy();
       const spy2 = sinon.spy();
       const wrapper = mount(<div>
@@ -3357,7 +3357,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.getElements()', () => {
+  describe('.getElements()', () => {
     it('should return the wrapped elements', () => {
       class Test extends Component {
         render() {
@@ -3439,7 +3439,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('#single()', () => {
+  describe('#single()', () => {
     it('throws if run on multiple nodes', () => {
       const wrapper = mount(<div><i /><i /></div>).children();
       expect(wrapper).to.have.lengthOf(2);
