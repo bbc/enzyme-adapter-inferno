@@ -1,4 +1,4 @@
-# inferno-enzyme-adapter
+# enzyme-adapter-inferno
 
 Adapter to configure enzyme to test Inferno components
 
