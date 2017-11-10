@@ -3346,7 +3346,7 @@ describe('mount', () => {
       }
     }
 
-    it.skip('should return the wrapped component instance', () => {
+    it('should return the wrapped component instance', () => {
       const wrapper = mount(<Test />);
       expect(wrapper.instance()).to.be.an.instanceof(Test);
     });
