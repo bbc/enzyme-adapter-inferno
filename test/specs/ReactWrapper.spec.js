@@ -1911,7 +1911,7 @@ describe('mount', () => {
       expect(children.at(1).hasClass('baz')).to.equal(true);
     });
 
-    it.skip('should not attempt to get an instance for text nodes', () => {
+    it('should not attempt to get an instance for text nodes', () => {
       const wrapper = mount(<div>B<span />C</div>);
       const children = wrapper.children();
       expect(children.length).to.equal(1);
@@ -2599,28 +2599,6 @@ describe('mount', () => {
     });
   });
 
-  describe('.ref(refName)', () => {
-    it.skip('gets a wrapper of the node matching the provided refName', () => {
-      class Foo extends Component {
-        render() {
-          return (
-            <div>
-              <span ref="firstRef" data-amount={2}>First</span>
-              <span ref="secondRef" data-amount={4}>Second</span>
-              <span ref="thirdRef" data-amount={8}>Third</span>
-            </div>
-          );
-        }
-      }
-      const wrapper = mount(<Foo />);
-      // React 13 and 14 return instances whereas 15+ returns actual DOM nodes. In this case,
-      // the public API of enzyme is to just return what `this.refs[refName]` would be expected
-      // to return for the version of react you're using.
-      expect(wrapper.ref('secondRef').getAttribute('data-amount')).to.equal('4');
-      expect(wrapper.ref('secondRef').textContent).to.equal('Second');
-    });
-  });
-
   describe('.html()', () => {
     it('should return html of straight DOM elements', () => {
       const wrapper = mount(<div className="test">
@@ -2844,7 +2822,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.matchesElement(node)', () => {
+  describe('.matchesElement(node)', () => {
     it('should match on a root node that looks like the rendered one', () => {
       const spy = sinon.spy();
       const wrapper = mount(<div>
@@ -2862,7 +2840,7 @@ describe('mount', () => {
         </div>)).to.equal(true);
       expect(spy.callCount).to.equal(0);
     });
-    it('should not match on a root node that doesn\'t looks like the rendered one', () => {
+    it.skip('should not match on a root node that doesn\'t looks like the rendered one', () => {
       const spy = sinon.spy();
       const spy2 = sinon.spy();
       const wrapper = mount(<div>
@@ -2883,7 +2861,7 @@ describe('mount', () => {
     });
 
     describe('stateless function components', () => {
-      it('should attach and stuff', () => {
+      it.skip('should attach and stuff', () => {
         const Foo = () => <div className="in-foo" />;
 
         const div = global.document.createElement('div');
@@ -2910,7 +2888,7 @@ describe('mount', () => {
         expect(div.childNodes).to.have.length(0);
       });
 
-      it('should allow for multiple attaches/detaches on same node', () => {
+      it.skip('should allow for multiple attaches/detaches on same node', () => {
         const Foo = () => <div className="in-foo" />;
         const Bar = () => <div className="in-bar" />;
 
@@ -2947,7 +2925,7 @@ describe('mount', () => {
         expect(div.childNodes).to.have.length(0);
       });
 
-      it('will attach to the body successfully', () => {
+      it.skip('will attach to the body successfully', () => {
         const Bar = () => <div className="in-bar" />;
 
         const wrapper = mount(<Bar />, { attachTo: document.body });
@@ -3137,7 +3115,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.containsAnyMatchingElements(nodes)', () => {
+  describe('.containsAnyMatchingElements(nodes)', () => {
     it('should match on an array with at least one node that looks like a rendered nodes', () => {
       const spy1 = sinon.spy();
       const spy2 = sinon.spy();
@@ -3180,7 +3158,7 @@ describe('mount', () => {
       expect(spy1.callCount).to.equal(0);
       expect(spy2.callCount).to.equal(0);
     });
-    it('should not match on an array with no nodes that looks like a rendered nodes', () => {
+    it.skip('should not match on an array with no nodes that looks like a rendered nodes', () => {
       const spy1 = sinon.spy();
       const spy2 = sinon.spy();
       const wrapper = mount(<div>

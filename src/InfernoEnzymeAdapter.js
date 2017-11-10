@@ -32,6 +32,7 @@ class InfernoAdapter extends EnzymeAdapter {
 
   nodeToElement(node) {
     if (!node || typeof node !== 'object') return null;
+    // console.log(node.props)
     return createElement(node.type, node.props);
   }
 
@@ -44,7 +45,7 @@ class InfernoAdapter extends EnzymeAdapter {
   }
 
   createMountRenderer() {
-    const domNode = global.document.createElement('div');
+    const domNode = global.document.createElement('span');
     let instance = null;
     return {
       render(el) {
