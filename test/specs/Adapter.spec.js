@@ -65,7 +65,7 @@ describe('adapter', () => {
       expect(prettyFormat(nodeA)).to.equal(prettyFormat(nodeB));
     }
 
-    it.skip('hydrated trees match unhydrated trees', () => {
+    it('hydrated trees match unhydrated trees', () => {
       class Bam extends Component {
         render() { return (<div>{this.props.children}</div>); }
       }
@@ -159,7 +159,7 @@ describe('adapter', () => {
       }));
     });
 
-    it.skip('renders simple components returning host components', () => {
+    it('renders simple components returning host components', () => {
       const options = { mode: 'mount' };
       const renderer = adapter.createRenderer(options);
 
@@ -488,7 +488,7 @@ describe('adapter', () => {
     });
   });
 
-  it.skip('render node with updated props', () => {
+  it('render node with updated props', () => {
     class Dummy extends Component {
       render() {
         return null;

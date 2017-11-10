@@ -15,7 +15,7 @@ const adapter = new InfernoEnzymeAdapter();
 
 const debugElement = element => debugNode(adapter.elementToNode(element));
 
-describe.skip('debug', () => {
+describe('debug', () => {
   describe('spaces(n)', () => {
     it('should return n spaces', () => {
       expect(spaces(4)).to.equal('    ');
@@ -74,7 +74,7 @@ describe.skip('debug', () => {
 </span>`);
     });
 
-    it('should render composite components as tags w/ displayName', () => {
+    it.skip('should render composite components as tags w/ displayName', () => {
       class Foo extends Component {
         render() { return <div />; }
       }
@@ -87,7 +87,7 @@ describe.skip('debug', () => {
 </div>`);
     });
 
-    it('should render composite components as tags w/ name', () => {
+    it.skip('should render composite components as tags w/ name', () => {
       class Foo extends Component {
         render() { return <div />; }
       }

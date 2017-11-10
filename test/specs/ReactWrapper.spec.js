@@ -21,7 +21,7 @@ const getWrapperPropSelector = prop => x => x.prop(prop);
 
 describe('mount', () => {
   describe('top level wrapper', () => {
-    it.skip('does what i expect', () => {
+    it('does what i expect', () => {
       class Box extends Component {
         render() {
           return <div className="box">{this.props.children}</div>;
@@ -238,7 +238,7 @@ describe('mount', () => {
   });
 
   describe('stateless components', () => {
-    it.skip('works with stateless components', () => {
+    it('works with stateless components', () => {
       const Foo = ({ foo }) => (
         <div>
           <div className="bar">bar</div>
@@ -251,7 +251,7 @@ describe('mount', () => {
       expect(wrapper.find('.qoo').text()).to.equal('qux');
     });
 
-    it.skip('supports findDOMNode with stateless components', () => {
+    it('supports findDOMNode with stateless components', () => {
       const Foo = ({ foo }) => (
         <div>{foo}</div>
       );
@@ -345,7 +345,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.hostNodes()', () => {
+  describe('.hostNodes()', () => {
     it('should strip out any non-hostNode', () => {
       class Foo extends Component {
         render() {
