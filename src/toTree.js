@@ -52,7 +52,7 @@ export default function toTree(el) {
         type: el.type,
         props,
         key: el.key,
-        refs: el.key,
+        ref: el.ref,
         instance: el.children,
         rendered: toTree(el.children._lastInput),
       };
@@ -62,7 +62,7 @@ export default function toTree(el) {
       type: el._vNode.type,
       props,
       key: el._vNode.key,
-      ref: el._vNode.key,
+      ref: el._vNode.ref,
       instance: el,
       rendered: toTree(el._lastInput),
     };
@@ -72,7 +72,7 @@ export default function toTree(el) {
     type: el.type,
     props,
     key: el.key,
-    ref: el.key,
+    ref: el.ref,
     instance: nodeType === 'function' ? null : el.dom,
     rendered: childrenToTree(el),
   };

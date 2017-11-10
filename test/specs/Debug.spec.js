@@ -152,7 +152,7 @@ describe('debug', () => {
   });
 
   describe('debugInst(inst)', () => {
-    it.skip('renders basic debug of mounted components', () => {
+    it('renders basic debug of mounted components', () => {
       class Foo extends Component {
         render() {
           return (
@@ -187,7 +187,7 @@ describe('debug', () => {
 </Foo>`);
     });
 
-    it.skip('renders debug of compositional components', () => {
+    it('renders debug of compositional components', () => {
       class Foo extends Component {
         render() {
           return (
@@ -223,7 +223,7 @@ describe('debug', () => {
 </Bar>`);
     });
 
-    it.skip('renders a subtree of a mounted tree', () => {
+    it('renders a subtree of a mounted tree', () => {
       class Foo extends Component {
         render() {
           return (
@@ -252,7 +252,7 @@ describe('debug', () => {
 </Foo>`);
     });
 
-    it.skip('renders passed children properly', () => {
+    it('renders passed children properly', () => {
       class Foo extends Component {
         render() {
           return (
@@ -292,7 +292,7 @@ describe('debug', () => {
     });
 
     describe('stateless function components', () => {
-      it.skip('renders basic debug of mounted components', () => {
+      it('renders basic debug of mounted components', () => {
         const Foo = () => (
           <div className="foo">
             <span>Foo</span>
@@ -335,7 +335,7 @@ describe('debug', () => {
 </Bar>`);
       });
 
-      it.skip('renders a subtree of a mounted tree', () => {
+      it('renders a subtree of a mounted tree', () => {
         const Foo = () => (
           <div className="foo">
             <span>Foo</span>
@@ -544,7 +544,7 @@ describe('debug', () => {
   });
 
   describe('debug React wrapper', () => {
-    it.skip('options.ignoreProps causes props to be omitted', () => {
+    it('options.ignoreProps causes props to be omitted', () => {
       class Foo extends Component {
         render() {
           return (

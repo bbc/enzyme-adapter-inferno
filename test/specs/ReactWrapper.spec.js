@@ -454,14 +454,14 @@ describe('mount', () => {
       expect(wrapper.find('Foo').type()).to.equal(Foo);
     });
 
-    it.skip('should find component based on a react prop', () => {
+    it('should find component based on a react prop', () => {
       const wrapper = mount(<div>
-          <span htmlFor="foo" />
-          <div htmlFor="bar" />
+          <span prop="foo" />
+          <div prop="bar" />
         </div>);
 
-      expect(wrapper.find('[htmlFor="foo"]')).to.have.length(1);
-      expect(wrapper.find('[htmlFor]')).to.have.length(2);
+      expect(wrapper.find('[prop="foo"]')).to.have.length(1);
+      expect(wrapper.find('[prop]')).to.have.length(2);
     });
 
     it('should error sensibly if any of the search props are undefined', () => {
@@ -477,13 +477,13 @@ describe('mount', () => {
       );
     });
 
-    it.skip('should compound tag and prop selector', () => {
+    it('should compound tag and prop selector', () => {
       const wrapper = mount(<div>
-          <span htmlFor="foo" />
+          <span prop="foo" />
         </div>);
 
-      expect(wrapper.find('span[htmlFor="foo"]')).to.have.length(1);
-      expect(wrapper.find('span[htmlFor]')).to.have.length(1);
+      expect(wrapper.find('span[prop="foo"]')).to.have.length(1);
+      expect(wrapper.find('span[prop]')).to.have.length(1);
     });
 
     it('works with an adjacent sibling selector', () => {
@@ -544,14 +544,14 @@ describe('mount', () => {
       expect(wrapper.find('[data-foo_bar="bar4"]')).to.have.length(1);
     });
 
-    it.skip('should find components with multiple matching props', () => {
+    it('should find components with multiple matching props', () => {
       const onChange = () => ({});
       const wrapper = mount(<div>
-          <span htmlFor="foo" onChange={onChange} preserveAspectRatio="xMaxYMax" />
+          <span prop="foo" onChange={onChange} preserveAspectRatio="xMaxYMax" />
         </div>);
 
-      expect(wrapper.find('span[htmlFor="foo"][onChange]')).to.have.length(1);
-      expect(wrapper.find('span[htmlFor="foo"][preserveAspectRatio="xMaxYMax"]')).to.have.length(1);
+      expect(wrapper.find('span[prop="foo"][onChange]')).to.have.length(1);
+      expect(wrapper.find('span[prop="foo"][preserveAspectRatio="xMaxYMax"]')).to.have.length(1);
     });
 
     it('should not find property when undefined', () => {
@@ -576,28 +576,6 @@ describe('mount', () => {
       expect(wrapper.find('span[value=2]')).to.have.length(0);
       expect(wrapper.find('a[value=false]')).to.have.length(1);
       expect(wrapper.find('a[value=true]')).to.have.length(0);
-    });
-
-    it.skip('should not find key or ref via property selector', () => {
-      class Foo extends Component {
-        render() {
-          const arrayOfComponents = [<div key="1" />, <div key="2" />];
-
-          return (
-            <div>
-              <div ref="foo" />
-              {arrayOfComponents}
-            </div>
-          );
-        }
-      }
-
-      const wrapper = mount(<Foo />);
-
-      expect(wrapper.find('div[ref="foo"]')).to.have.length(0);
-      expect(wrapper.find('div[key="1"]')).to.have.length(0);
-      expect(wrapper.find('[ref]')).to.have.length(0);
-      expect(wrapper.find('[key]')).to.have.length(0);
     });
 
     it('should find multiple elements based on a class name', () => {
@@ -860,7 +838,7 @@ describe('mount', () => {
       expect(wrapper.props()).to.deep.equal({ data: content });
     });
 
-    it.skip('should return shallow rendered string when debug() is called', () => {
+    it('should return shallow rendered string when debug() is called', () => {
       class Foo extends Component {
         render() {
           return (
@@ -937,7 +915,7 @@ describe('mount', () => {
         expect(wrapper.props()).to.deep.equal({ data: content });
       });
 
-      it.skip('should return shallow rendered string when debug() is called', () => {
+      it('should return shallow rendered string when debug() is called', () => {
         const SFC = function SFC({ data }) {
           return (
             <div data-foo={data}>Test SFC</div>
@@ -1664,7 +1642,7 @@ describe('mount', () => {
       expect(wrapper.text()).to.equal('some text');
     });
 
-    it.skip('should handle nodes with mapped children', () => {
+    it('should handle nodes with mapped children', () => {
       class Foo extends Component {
         render() {
           return (
@@ -1684,7 +1662,7 @@ describe('mount', () => {
         />);
     });
 
-    it.skip('should render composite components smartly', () => {
+    it('should render composite components smartly', () => {
       class Foo extends Component {
         render() { return <div>foo</div>; }
       }
@@ -1695,12 +1673,12 @@ describe('mount', () => {
       expect(wrapper.text()).to.equal('footest');
     });
 
-    it.skip('should handle html entities', () => {
+    it('should handle html entities', () => {
       matchesRender(<div>&gt;</div>);
     });
 
     describe('stateless function components', () => {
-      it.skip('should handle nodes with mapped children', () => {
+      it('should handle nodes with mapped children', () => {
         const Foo = props => (
           <div>{props.items.map(x => x)}</div>
         );
@@ -2694,7 +2672,7 @@ describe('mount', () => {
   });
 
   describe('.render()', () => {
-    it.skip('should return a cheerio wrapper around the current node', () => {
+    it('should return a cheerio wrapper around the current node', () => {
       class Foo extends Component {
         render() {
           return (<div className="in-foo" />);
@@ -2714,7 +2692,7 @@ describe('mount', () => {
     });
 
     describe('stateless function components', () => {
-      it.skip('should return a cheerio wrapper around the current node', () => {
+      it('should return a cheerio wrapper around the current node', () => {
         const Foo = () => <div className="in-foo" />;
         const Bar = () => (
           <div className="in-bar">
