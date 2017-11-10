@@ -22,7 +22,10 @@ function isClassComponent(el) {
 class InfernoAdapter extends EnzymeAdapter {
   nodeToHostNode(node) {
     if (node.nodeType === 'class' || node.nodeType === 'function') {
-      return Array.isArray(node.rendered) ? node.rendered[0].instance : node.rendered.instance;
+      if (!node.rendered) {
+        return node.rendered;
+      }
+      return Array.isArray(node.rendered) ? node.rendered[0] : node.rendered.instance;
     }
     return node.instance;
   }
@@ -34,6 +37,10 @@ class InfernoAdapter extends EnzymeAdapter {
 
   elementToNode(el) {
     return toTree(el);
+  }
+
+  createElement(...args) {
+    return createElement(...args);
   }
 
   createMountRenderer() {

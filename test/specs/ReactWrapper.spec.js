@@ -1499,7 +1499,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.isEmptyRender()', () => {
+  describe('.isEmptyRender()', () => {
     const emptyRenderValues = generateEmptyRenderData();
 
     itWithData(emptyRenderValues, 'when a React class component returns: ', (data) => {
@@ -1522,7 +1522,7 @@ describe('mount', () => {
       expect(wrapper.isEmptyRender()).to.equal(data.expectResponse);
     });
 
-    it('should not return true for HTML elements', () => {
+    it.skip('should not return true for HTML elements', () => {
       const wrapper = mount(<div className="bar baz" />);
       expect(wrapper.isEmptyRender()).to.equal(false);
     });
@@ -2807,7 +2807,7 @@ describe('mount', () => {
     });
   });
 
-  it.skip('works with class components that return null', () => {
+  it('works with class components that return null', () => {
     class Foo extends Component {
       render() {
         return null;
@@ -2822,7 +2822,7 @@ describe('mount', () => {
     expect(rendered.html()).to.equal(null);
   });
 
-  it.skip('works with SFCs that return null', () => {
+  it('works with SFCs that return null', () => {
     const Foo = () => null;
 
     const wrapper = mount(<Foo />);
