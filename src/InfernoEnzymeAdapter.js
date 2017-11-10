@@ -6,6 +6,7 @@ import VNodeFlags from 'inferno-vnode-flags';
 import InfernoServer from 'inferno-server';
 import createElement from 'inferno-create-element';
 import {
+  mapNativeEventNames,
   throwError,
 } from './util';
 import toTree from './toTree';
@@ -58,7 +59,15 @@ class InfernoAdapter extends EnzymeAdapter {
       },
 
       simulateEvent(node, event, ...args) {
-        node.props[`on${upperCasefirst(event)}`](...args);
+        let hostNode = node;
+        const eventName = mapNativeEventNames(event);
+        if (node.type !== 'host') {
+          hostNode = Array.isArray(node.rendered) ? node.rendered[0] : node.rendered;
+        }
+        const handler = hostNode.props[`on${upperCasefirst(eventName)}`];
+        if (handler) {
+          handler(...args);
+        }
       },
     };
   }

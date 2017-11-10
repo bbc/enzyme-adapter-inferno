@@ -1269,7 +1269,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.simulate(eventName, data)', () => {
+  describe('.simulate(eventName, data)', () => {
     it('should simulate events', () => {
       class Foo extends Component {
         constructor(props) {
@@ -1316,12 +1316,6 @@ describe('mount', () => {
       wrapper.simulate('click', { someSpecialData: 'foo' });
       expect(spy.calledOnce).to.equal(true);
       expect(spy.args[0][0].someSpecialData).to.equal('foo');
-    });
-
-    it('should throw a descriptive error for invalid events', () => {
-      const wrapper = mount(<div>foo</div>);
-      expect(wrapper.simulate.bind(wrapper, 'invalidEvent'))
-        .to.throw(TypeError, "ReactWrapper::simulate() event 'invalidEvent' does not exist");
     });
 
     describe('Normalizing JS event names', () => {
