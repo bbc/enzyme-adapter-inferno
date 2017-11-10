@@ -1896,6 +1896,15 @@ inferno-create-class@^3.10.1:
     inferno-component "3.10.1"
     inferno-shared "3.10.1"
 
+inferno-create-element@^3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/inferno-create-element/-/inferno-create-element-3.10.1.tgz#acb921e6c0cc9b0f3d90516062375247c0273df9"
+  dependencies:
+    inferno "3.10.1"
+    inferno-component "3.10.1"
+    inferno-shared "3.10.1"
+    inferno-vnode-flags "3.10.1"
+
 inferno-shared@3.10.0:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-3.10.0.tgz#8158f45f9bb7d6c53eabe10fd76ef36d09b57b84"

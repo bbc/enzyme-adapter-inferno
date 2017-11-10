@@ -280,8 +280,8 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.contains(node)', () => {
-    it('should allow matches on the root node', () => {
+  describe('.contains(node)', () => {
+    it.skip('should allow matches on the root node', () => {
       const a = <div className="foo" />;
       const b = <div className="foo" />;
       const c = <div className="bar" />;
@@ -308,7 +308,7 @@ describe('mount', () => {
       expect(wrapper.contains(b)).to.equal(true);
     });
 
-    it('should do something with arrays of nodes', () => {
+    it.skip('should do something with arrays of nodes', () => {
       const wrapper = mount(<div>
           <span>Hello</span>
           <div>Goodbye</div>
@@ -756,7 +756,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.findWhere(predicate)', () => {
+  describe('.findWhere(predicate)', () => {
     it('should return all elements for a truthy test', () => {
       const wrapper = mount(<div>
           <input className="foo" />
@@ -794,7 +794,7 @@ describe('mount', () => {
       expect(spy.args[3][0].hasClass('bux')).to.equal(true);
     });
 
-    it('finds nodes', () => {
+    it.skip('finds nodes', () => {
       class Foo extends Component {
         render() {
           return (
@@ -819,7 +819,7 @@ describe('mount', () => {
       expect(foundNotSpan.type()).to.equal('i');
     });
 
-    it('finds nodes when conditionally rendered', () => {
+    it.skip('finds nodes when conditionally rendered', () => {
       class Foo extends Component {
         render() {
           return (
@@ -858,7 +858,7 @@ describe('mount', () => {
       expect(wrapper.props()).to.deep.equal({ data: content });
     });
 
-    it('should return shallow rendered string when debug() is called', () => {
+    it.skip('should return shallow rendered string when debug() is called', () => {
       class Foo extends Component {
         render() {
           return (
@@ -935,7 +935,7 @@ describe('mount', () => {
         expect(wrapper.props()).to.deep.equal({ data: content });
       });
 
-      it('should return shallow rendered string when debug() is called', () => {
+      it.skip('should return shallow rendered string when debug() is called', () => {
         const SFC = function SFC({ data }) {
           return (
             <div data-foo={data}>Test SFC</div>
@@ -1491,7 +1491,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.is(selector)', () => {
+  describe('.is(selector)', () => {
     it('should return true when selector matches current element', () => {
       const wrapper = mount(<div className="foo bar baz" />);
       expect(wrapper.is('.foo')).to.equal(true);
@@ -1650,7 +1650,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.text()', () => {
+  describe('.text()', () => {
     const matchesRender = function matchesRender(node) {
       const actual = mount(node).text();
       const expected = render(node).text();
@@ -1662,7 +1662,7 @@ describe('mount', () => {
       expect(wrapper.text()).to.equal('some text');
     });
 
-    it('should handle nodes with mapped children', () => {
+    it.skip('should handle nodes with mapped children', () => {
       class Foo extends Component {
         render() {
           return (
@@ -1693,7 +1693,7 @@ describe('mount', () => {
       expect(wrapper.text()).to.equal('footest');
     });
 
-    it('should handle html entities', () => {
+    it.skip('should handle html entities', () => {
       matchesRender(<div>&gt;</div>);
     });
 

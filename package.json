@@ -36,6 +36,7 @@
   "peerDependencies": {
     "enzyme": "^3.0.0",
     "inferno": "^3.0.0",
+    "inferno-create-element": "^3.10.1",
     "inferno-test-utils": "^3.0.0"
   },
   "dependencies": {

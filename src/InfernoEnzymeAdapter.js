@@ -3,6 +3,7 @@ import {
 } from 'enzyme';
 import Inferno from 'inferno';
 import VNodeFlags from 'inferno-vnode-flags';
+import createElement from 'inferno-create-element';
 import {
   throwError,
 } from './util';
@@ -18,7 +19,15 @@ function isClassComponent(el) {
 
 class InfernoAdapter extends EnzymeAdapter {
   nodeToHostNode(node) {
-    return Array.isArray(node.rendered) ? node.rendered[0] : node.rendered;
+    if (node.nodeType === 'class' || node.nodeType === 'function') {
+      return Array.isArray(node.rendered) ? node.rendered[0].instance : node.rendered.instance;
+    }
+    return node.instance;
+  }
+
+  nodeToElement(node) {
+    if (!node || typeof node !== 'object') return null;
+    return createElement(node.type, node.props);
   }
 
   elementToNode(el) {
@@ -61,6 +70,7 @@ class InfernoAdapter extends EnzymeAdapter {
       case EnzymeAdapter.MODES.MOUNT: return this.createMountRenderer(options);
       case EnzymeAdapter.MODES.SHALLOW: return throwError('shallow is not yet implemented');
       case EnzymeAdapter.MODES.RENDER: return throwError('render is not yet implemented');
+      case EnzymeAdapter.MODES.STRING: return throwError('string is not yet implemented');
       default:
         throw new Error(`Enzyme Internal Error: Unrecognized mode: ${options.mode}`);
     }

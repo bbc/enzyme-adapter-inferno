@@ -14,12 +14,12 @@ function getNodeType(el) {
   return 'host';
 }
 function childrenToTree(node) {
-  if (!node || !node.children) {
+  if (!node) {
     return null;
   }
 
-  if (typeof node.children === 'string') {
-    return [node.chilren];
+  if (typeof node === 'string') {
+    return [node];
   }
 
   if (Array.isArray(node.children)) {
@@ -61,7 +61,7 @@ export default function toTree(el) {
     props,
     key: el.key,
     ref: el.key,
-    instance: null,
+    instance: nodeType === 'function' ? null : el.dom,
     rendered: childrenToTree(el),
   };
 }
