@@ -1,6 +1,6 @@
 ## RST
 
-RST stands for React Syntax Tree.
+RST stands for React Standard Tree.
 
 Enzyme 3 works with RST to traverse and assert mounted components.
 
@@ -13,12 +13,12 @@ You can see the structure of an RST node below:
 ```js
 {
   nodeType: 'class' | 'function' | 'host',
-  type: string,
+  type: string | Function,
   props: Object,
   key: string | null,
   ref: string | null,
   instance: vNode,
-  rendered: RSTNode | Array<RSTNode> | null
+  rendered: RSTNode | Array<RSTNode> | Array<string> | null
 }
 ```
 
@@ -28,7 +28,9 @@ The nodeType, this is used by enzyme to determine how to interact with the RST n
 
 ### type
 
-The Node type as a string.
+If the node is a host node, this is the Node type as a string.
+
+If the node is a class or function, this is the constructor.
 
 ```js
 {
@@ -50,8 +52,14 @@ The instance `key`
 
 ### instance
 
-A vNode
+If the node is a host node, this is the corresponding HTMLElement.
+
+If the node is a function this is null.
+
+If the node is a class component, this is the class instance.
 
 ### rendered
 
-This is an RST node. The node
+This is an RST node of the children.
+
+If the child is a text node, it is an array of strings.
