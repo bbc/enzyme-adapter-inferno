@@ -74,7 +74,7 @@ describe('debug', () => {
 </span>`);
     });
 
-    it.skip('should render composite components as tags w/ displayName', () => {
+    it('should render composite components as tags w/ displayName', () => {
       class Foo extends Component {
         render() { return <div />; }
       }
@@ -87,7 +87,7 @@ describe('debug', () => {
 </div>`);
     });
 
-    it.skip('should render composite components as tags w/ name', () => {
+    it('should render composite components as tags w/ name', () => {
       class Foo extends Component {
         render() { return <div />; }
       }
@@ -141,7 +141,7 @@ describe('debug', () => {
 </div>`);
     });
 
-    it.skip('should not render falsy children ', () => {
+    it('should not render falsy children ', () => {
       expect(debugElement(<div id="foo">
           {false}
           {null}

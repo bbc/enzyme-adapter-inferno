@@ -58,7 +58,7 @@ export default function toTree(el) {
         key: el.key,
         ref: el.ref,
         instance: el.children,
-        rendered: toTree(el.children._lastInput),
+        rendered: !el.children ? null : toTree(el.children._lastInput),
       };
     }
     return {
