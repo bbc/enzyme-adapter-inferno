@@ -15,7 +15,7 @@ function getNodeType(el) {
   return 'host';
 }
 function childrenToTree(node) {
-  if (!node) {
+  if (!node.children) {
     return null;
   }
 
@@ -33,6 +33,10 @@ function childrenToTree(node) {
 export default function toTree(el) {
   if (el === null || typeof el !== 'object') {
     return [el];
+  }
+
+  if (!el.type) {
+    return null;
   }
 
   const props = {

@@ -190,7 +190,7 @@ describe('adapter', () => {
       }));
     });
 
-    it.skip('renders simple components returning host components', () => {
+    it('renders simple components returning host components', () => {
       const options = { mode: 'mount' };
       const renderer = adapter.createRenderer(options);
 
@@ -227,7 +227,7 @@ describe('adapter', () => {
       }));
     });
 
-    it.skip('handles null rendering components', () => {
+    it('handles null rendering components', () => {
       const options = { mode: 'mount' };
       const renderer = adapter.createRenderer(options);
 
@@ -367,7 +367,7 @@ describe('adapter', () => {
       }));
     });
 
-    it.skip('renders complicated trees of composites and hosts', () => {
+    it('renders complicated trees of composites and hosts', () => {
       // class returning host. no children props.
       class Qoo extends Component {
         render() {
@@ -458,7 +458,7 @@ describe('adapter', () => {
                   nodeType: 'host',
                   type: 'span',
                   props: { className: 'Foo2' },
-                  key: null,
+                  key: '.0',
                   ref: null,
                   instance: null,
                   rendered: ['Literal'],
@@ -467,7 +467,7 @@ describe('adapter', () => {
                   nodeType: 'class',
                   type: Qoo,
                   props: {},
-                  key: null,
+                  key: '.1',
                   ref: null,
                   instance: null,
                   rendered: {
