@@ -40,6 +40,8 @@
     "inferno-test-utils": "^3.0.0"
   },
   "dependencies": {
+    "inferno-create-element": "^3.10.1",
+    "inferno-server": "^3.10.1",
     "inferno-vnode-flags": "^3.10.1"
   }
 }

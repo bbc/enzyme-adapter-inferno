@@ -3,6 +3,7 @@ import {
 } from 'enzyme';
 import Inferno from 'inferno';
 import VNodeFlags from 'inferno-vnode-flags';
+import InfernoServer from 'inferno-server';
 import createElement from 'inferno-create-element';
 import {
   throwError,
@@ -61,13 +62,19 @@ class InfernoAdapter extends EnzymeAdapter {
       },
     };
   }
+  createStringRenderer() {
+    return {
+      render(el) {
+        return InfernoServer.renderToString(el);
+      },
+    };
+  }
 
   createRenderer(options) {
     switch (options.mode) {
       case EnzymeAdapter.MODES.MOUNT: return this.createMountRenderer(options);
       case EnzymeAdapter.MODES.SHALLOW: return throwError('shallow is not yet implemented');
-      case EnzymeAdapter.MODES.RENDER: return throwError('render is not yet implemented');
-      case EnzymeAdapter.MODES.STRING: return throwError('string is not yet implemented');
+      case EnzymeAdapter.MODES.STRING: return this.createStringRenderer(options);
       default:
         throw new Error(`Enzyme Internal Error: Unrecognized mode: ${options.mode}`);
     }

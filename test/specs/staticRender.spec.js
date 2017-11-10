@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { render } from 'enzyme';
 
-describe.skip('render', () => {
+describe('render', () => {
   describe('context', () => {
-    it('can pass in context', () => {
+    it.skip('can pass in context', () => {
       const SimpleComponent = createClass({
         contextTypes: {
           name: PropTypes.string,
@@ -26,7 +26,7 @@ describe.skip('render', () => {
       expect(String(wrapper)).to.equal('<div>foo</div>');
     });
 
-    it('can pass context to the child of mounted component', () => {
+    it.skip('can pass context to the child of mounted component', () => {
       const SimpleComponent = createClass({
         contextTypes: {
           name: PropTypes.string,
