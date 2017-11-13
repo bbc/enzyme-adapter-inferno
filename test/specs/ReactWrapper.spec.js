@@ -945,7 +945,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.setProps(newProps[, callback])', () => {
+  describe('.setProps(newProps[, callback])', () => {
     it('should set props for a component multiple times', () => {
       class Foo extends Component {
         render() {
@@ -958,6 +958,7 @@ describe('mount', () => {
       }
       const wrapper = mount(<Foo id="foo" />);
       expect(wrapper.find('.foo').length).to.equal(1);
+
       wrapper.setProps({ id: 'bar', foo: 'bla' });
       expect(wrapper.find('.bar').length).to.equal(1);
     });
@@ -1049,7 +1050,7 @@ describe('mount', () => {
     });
 
 
-    it('should call the callback when setProps has completed', () => {
+    it.skip('should call the callback when setProps has completed', () => {
       class Foo extends Component {
         render() {
           return (
@@ -1372,7 +1373,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('.setState(newState[, callback])', () => {
+  describe('.setState(newState[, callback])', () => {
     it('should set the state of the root node', () => {
       class Foo extends Component {
         constructor(props) {
@@ -1391,7 +1392,7 @@ describe('mount', () => {
       expect(wrapper.find('.bar').length).to.equal(1);
     });
 
-    it('allows setState inside of componentDidMount', () => {
+    it.skip('allows setState inside of componentDidMount', () => {
       // NOTE: this test is a test to ensure that the following issue is
       // fixed: https://github.com/airbnb/enzyme/issues/27
       class MySharona extends Component {

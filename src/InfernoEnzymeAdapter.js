@@ -48,12 +48,15 @@ class InfernoAdapter extends EnzymeAdapter {
     const domNode = global.document.createElement('span');
     let instance = null;
     return {
-      render(el) {
+      render(el, context, callback) {
         if (isClassComponent(el)) {
           instance = Inferno.render(el, domNode);
         } else {
           Inferno.render(el, domNode);
           instance = el;
+        }
+        if (typeof callback === 'function') {
+          callback();
         }
       },
 
