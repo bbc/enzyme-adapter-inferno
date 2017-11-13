@@ -38,7 +38,6 @@ describe('mount', () => {
       }
 
       const wrapper = mount(<Foo bar />);
-      console.log(wrapper.children());
       const getClassOf = Function.prototype.call.bind(Object.prototype.toString);
       expect(getClassOf(wrapper.instance()));
       expect(wrapper.type()).to.equal(Foo);

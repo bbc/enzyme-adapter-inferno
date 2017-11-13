@@ -35,8 +35,12 @@ export default function toTree(el) {
     return [el];
   }
 
-  if (!el.type) {
+  if (!el.type && !el.children) {
     return null;
+  }
+
+  if (!el.type) {
+    return el.children.toString();
   }
 
   const props = {

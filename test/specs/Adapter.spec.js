@@ -91,7 +91,7 @@ describe('adapter', () => {
       hydratedTreeMatchesUnhydrated(<Four />);
     });
 
-    it.skip('treats mixed children correctly', () => {
+    it('treats mixed children correctly', () => {
       class Foo extends Component {
         render() {
           return (
@@ -132,7 +132,7 @@ describe('adapter', () => {
       }));
     });
 
-    it.skip('treats null renders correctly', () => {
+    it('treats null renders correctly', () => {
       class Foo extends Component {
         render() {
           return null;
@@ -257,7 +257,7 @@ describe('adapter', () => {
     });
 
 
-    it.skip('renders complicated trees of composites and hosts', () => {
+    it('renders complicated trees of composites and hosts', () => {
       // SFC returning host. no children props.
       const Qoo = () => <span className="Qoo">Hello World!</span>;
 
@@ -338,7 +338,7 @@ describe('adapter', () => {
                   nodeType: 'host',
                   type: 'span',
                   props: { className: 'Foo2' },
-                  key: null,
+                  key: '.0',
                   ref: null,
                   instance: null,
                   rendered: ['Literal'],
@@ -347,7 +347,7 @@ describe('adapter', () => {
                   nodeType: 'function',
                   type: Qoo,
                   props: {},
-                  key: null,
+                  key: '.1',
                   ref: null,
                   instance: null,
                   rendered: {

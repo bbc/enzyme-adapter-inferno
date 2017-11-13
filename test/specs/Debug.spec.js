@@ -52,7 +52,7 @@ describe('debug', () => {
 </div>`);
     });
 
-    it.skip('should render mixed children', () => {
+    it('should render mixed children', () => {
       expect(debugElement(<div>hello{'world'}</div>)).to.equal(`<div>
   hello
   world
@@ -108,7 +108,7 @@ describe('debug', () => {
 </div>`);
     });
 
-    it.skip('should render mapped children properly', () => {
+    it('should render mapped children properly', () => {
       expect(debugElement(<div>
           <i>not in array</i>
           {['a', 'b', 'c']}
@@ -170,7 +170,7 @@ describe('debug', () => {
 </Foo>`);
     });
 
-    it.skip('renders basic debug of components with mixed children', () => {
+    it('renders basic debug of components with mixed children', () => {
       class Foo extends Component {
         render() {
           return (
