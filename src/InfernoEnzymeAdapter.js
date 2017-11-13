@@ -58,7 +58,7 @@ class InfernoAdapter extends EnzymeAdapter {
       },
 
       unmount() {
-        instance.componentWillUnmount.apply(instance);
+        instance.children.componentWillUnmount.apply(instance.children);
         instance = null;
       },
 
