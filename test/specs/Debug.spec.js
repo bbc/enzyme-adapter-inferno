@@ -122,7 +122,7 @@ describe('debug', () => {
 </div>`);
     });
 
-    it.skip('should render number children properly', () => {
+    it('should render number children properly', () => {
       expect(debugElement(<div>
           {-1}
           {0}

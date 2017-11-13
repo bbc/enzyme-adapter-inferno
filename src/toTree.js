@@ -35,7 +35,7 @@ export default function toTree(el) {
     return [el];
   }
 
-  if (!el.type && !el.children) {
+  if (!el.type && el.children !== 0 && !el.children) {
     return null;
   }
 
