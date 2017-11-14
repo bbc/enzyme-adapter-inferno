@@ -1,7 +1,7 @@
 {
-  "name": "inferno-enzyme-adapter",
+  "name": "enzyme-adapter-inferno",
   "description": "Inferno enzyme adapter",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "dist/InfernoEnzymeAdapter.js",
   "scripts": {
     "build": "babel src --out-dir dist",
