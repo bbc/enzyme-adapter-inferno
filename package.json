@@ -2,8 +2,9 @@
   "name": "inferno-enzyme-adapter",
   "description": "Inferno enzyme adapter",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/InfernoEnzymeAdapter.js",
   "scripts": {
+    "build": "babel src --out-dir dist",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && npm run unit",
@@ -12,6 +13,7 @@
   "author": "Edd Yerburgh",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-inferno": "^3.2.0",
     "babel-preset-env": "^1.6.0",
