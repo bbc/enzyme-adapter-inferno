@@ -5,7 +5,7 @@
   "main": "dist/InfernoEnzymeAdapter.js",
   "scripts": {
     "build": "babel src --out-dir dist",
-    "lint": "eslint .",
+    "lint": "eslint . --ignore-path .gitignore ",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && npm run unit",
     "prepublish": "npm run build",
