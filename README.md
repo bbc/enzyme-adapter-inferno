@@ -22,7 +22,7 @@ Before you run tests, configure enzyme with the adapter:
 
 ```js
 import { configure } from 'enzyme'
-import InfernoEnzymeAdapter from 'infern-enzyme-adapter'
+import InfernoEnzymeAdapter from 'enzyme-adapter-inferno'
 
 configure({ adapter: new InfernoEnzymeAdapter() })
 ```
@@ -32,7 +32,7 @@ Then use enzyme as you would with a React component:
 
 ```js
 import InfernoComponent from 'inferno-component'
-import { mount } from 'Enzyme'
+import { mount } from 'enzyme'
 
 const wrapper = mount(Component)
 wrapper.setProps({someProp: 'value'})
