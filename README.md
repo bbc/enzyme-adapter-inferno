@@ -4,12 +4,16 @@ Adapter to configure enzyme to test Inferno components
 
 **Still in development ⚠️**
 
+This adapter is missing features:
+
+- no shallow rendering
+- no support for `context`
+- no support for `attachTo`
+
 ## Installation
 
-This package is pre 0.1.0 and is unreleased on npm. You can install it from the repo:
-
 ```
-npm install --save-dev https://github.com/bbc/inferno-enzyme-adapter
+npm install --save-dev enzyme-adapter-inferno
 ```
 
 ## Usage
