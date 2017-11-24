@@ -2008,7 +2008,7 @@ describe('mount', () => {
   });
 
   describe('.parent()', () => {
-    it.skip('should return only the immediate parent of the node', () => {
+    it('should return only the immediate parent of the node', () => {
       const wrapper = mount(<div className="bax">
           <div className="foo">
             <div className="bar">
@@ -2020,7 +2020,7 @@ describe('mount', () => {
       expect(wrapper.find('.baz').parent().hasClass('bar')).to.equal(true);
     });
 
-    it.skip('should work for multiple nodes', () => {
+    it('should work for multiple nodes', () => {
       const wrapper = mount(<div>
           <div className="foo">
             <div className="baz" />
@@ -2056,7 +2056,7 @@ describe('mount', () => {
       expect(closestFoo.length).to.equal(1);
     });
 
-    it.skip('should only ever return a wrapper of a single node', () => {
+    it('should only ever return a wrapper of a single node', () => {
       const wrapper = mount(<div className="bax">
           <div className="foo">
             <div className="bar">

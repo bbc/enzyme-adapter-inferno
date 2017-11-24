@@ -32,8 +32,12 @@ class InfernoAdapter extends EnzymeAdapter {
 
   nodeToElement(node) {
     if (!node || typeof node !== 'object') return null;
-    // console.log(node.props)
-    return createElement(node.type, node.props);
+
+    const el = createElement(node.type, node.props);
+    if (el.className) {
+      el.props.className = el.className;
+    }
+    return el;
   }
 
   elementToNode(el) {
