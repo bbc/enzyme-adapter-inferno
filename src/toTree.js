@@ -16,7 +16,7 @@ function getNodeType(el) {
 }
 function childrenToTree(node) {
   if (!node.children) {
-    return null;
+    return undefined;
   }
 
   if (typeof node === 'string') {

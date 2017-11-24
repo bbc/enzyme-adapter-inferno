@@ -1522,8 +1522,9 @@ describe('mount', () => {
       expect(wrapper.isEmptyRender()).to.equal(data.expectResponse);
     });
 
-    it.skip('should not return true for HTML elements', () => {
+    it('should not return true for HTML elements', () => {
       const wrapper = mount(<div className="bar baz" />);
+
       expect(wrapper.isEmptyRender()).to.equal(false);
     });
 
