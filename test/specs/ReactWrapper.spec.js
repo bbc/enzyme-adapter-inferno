@@ -1050,7 +1050,7 @@ describe('mount', () => {
     });
 
 
-    it.skip('should call the callback when setProps has completed', () => {
+    it('should call the callback when setProps has completed', () => {
       class Foo extends Component {
         render() {
           return (

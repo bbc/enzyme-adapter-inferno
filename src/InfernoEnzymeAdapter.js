@@ -76,6 +76,10 @@ class InfernoAdapter extends EnzymeAdapter {
         return instance ? toTree(instance) : null;
       },
 
+      batchedUpdates(fn) {
+        return fn;
+      },
+
       simulateEvent(node, event, ...args) {
         let hostNode = node;
         const eventName = mapNativeEventNames(event);
