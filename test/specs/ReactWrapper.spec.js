@@ -3215,12 +3215,13 @@ describe('mount', () => {
       });
     });
 
-    describe.skip('.ref()', () => {
+    describe('.ref()', () => {
       it('unavailable ref should return undefined', () => {
         class WithoutRef extends Component {
           render() { return <div />; }
         }
         const wrapper = mount(<WithoutRef />);
+
         const ref = wrapper.ref('not-a-ref');
 
         expect(ref).to.equal(undefined);

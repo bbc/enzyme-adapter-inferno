@@ -55,6 +55,9 @@ export default function toTree(el) {
 
   if (nodeType === 'class') {
     if (!el._vNode) {
+      if(el.children) {
+        el.children.refs = {}; // eslint-disable-line no-param-reassign
+      }
       return {
         nodeType,
         type: el.type,
@@ -65,6 +68,7 @@ export default function toTree(el) {
         rendered: !el.children ? null : toTree(el.children._lastInput),
       };
     }
+    el.refs = {}; // eslint-disable-line no-param-reassign
     return {
       nodeType,
       type: el._vNode.type,
