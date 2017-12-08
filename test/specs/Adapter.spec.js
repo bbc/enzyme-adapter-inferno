@@ -38,13 +38,13 @@ function renderToString(el) {
 
 describe('adapter', () => {
   describe('mounted render', () => {
-    function hydratedTreeMatchesUnhydrated(element) {
+    function hydratedTreeMatchesUnhydrated(element, i) {
       const markup = renderToString(element);
       const dom = jsdom.jsdom(`<div id="root">${markup}</div>`);
 
       const rendererA = adapter.createRenderer({
         mode: 'mount',
-        attachTo: dom.querySelector('#root'),
+        attachTo: dom.querySelector(`#root${i}`),
       });
 
       rendererA.render(element);
@@ -85,10 +85,10 @@ describe('adapter', () => {
         render() { return (<Foo><span>{'some string'}4{'another string'}</span></Foo>); }
       }
 
-      hydratedTreeMatchesUnhydrated(<One />);
-      hydratedTreeMatchesUnhydrated(<Two />);
-      hydratedTreeMatchesUnhydrated(<Three />);
-      hydratedTreeMatchesUnhydrated(<Four />);
+      hydratedTreeMatchesUnhydrated(<One />, 1);
+      hydratedTreeMatchesUnhydrated(<Two />, 2);
+      hydratedTreeMatchesUnhydrated(<Three />, 3);
+      hydratedTreeMatchesUnhydrated(<Four />, 4);
     });
 
     it('treats mixed children correctly', () => {

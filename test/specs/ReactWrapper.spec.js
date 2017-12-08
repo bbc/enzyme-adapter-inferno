@@ -2692,7 +2692,7 @@ describe('mount', () => {
     });
   });
 
-  describe.skip('attachTo option', () => {
+  describe('attachTo option', () => {
     it('should attach and stuff', () => {
       class Foo extends Component {
         render() {
@@ -2724,7 +2724,7 @@ describe('mount', () => {
       expect(div.childNodes).to.have.length(0);
     });
 
-    it('should allow for multiple attaches/detaches on same node', () => {
+    it.skip('should allow for multiple attaches/detaches on same node', () => {
       class Foo extends Component {
         render() {
           return (<div className="in-foo" />);
@@ -2751,7 +2751,6 @@ describe('mount', () => {
       expect(div.childNodes).to.have.length(1);
 
       wrapper.detach();
-
       wrapper = mount(<Bar />, { attachTo: div });
 
       expect(wrapper.find('.in-bar')).to.have.length(1);
@@ -2767,22 +2766,6 @@ describe('mount', () => {
 
       expect(document.body.childNodes).to.have.length(initialBodyChildren);
       expect(div.childNodes).to.have.length(0);
-    });
-
-    it('will attach to the body successfully', () => {
-      class Bar extends Component {
-        render() {
-          return (<section className="in-bar" />);
-        }
-      }
-      const wrapper = mount(<Bar />, { attachTo: document.body });
-
-      expect(wrapper.find('.in-bar')).to.have.length(1);
-      expect(document.body.childNodes).to.have.length(1);
-
-      wrapper.detach();
-
-      expect(document.body.childNodes).to.have.length(0);
     });
   });
 
