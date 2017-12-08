@@ -2724,7 +2724,7 @@ describe('mount', () => {
       expect(div.childNodes).to.have.length(0);
     });
 
-    it.skip('should allow for multiple attaches/detaches on same node', () => {
+    it('should allow for multiple attaches/detaches on same node', () => {
       class Foo extends Component {
         render() {
           return (<div className="in-foo" />);
@@ -2872,7 +2872,7 @@ describe('mount', () => {
         expect(div.childNodes).to.have.length(0);
       });
 
-      it.skip('should allow for multiple attaches/detaches on same node', () => {
+      it('should allow for multiple attaches/detaches on same node', () => {
         const Foo = () => <div className="in-foo" />;
         const Bar = () => <div className="in-bar" />;
 

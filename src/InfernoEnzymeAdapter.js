@@ -12,7 +12,6 @@ import {
 import toTree from './toTree';
 
 Inferno.options.recyclingEnabled = false;
-Inferno.options.roots = [];
 
 function upperCasefirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -52,12 +51,12 @@ class InfernoAdapter extends EnzymeAdapter {
   }
 
   createMountRenderer(options) {
-    Inferno.options.roots = [];
     const domNode = options.attachTo || global.document.createElement('span');
     let instance = null;
     return {
       render(el, context, callback) {
-        Inferno.options.roots = [];
+        Inferno.options.roots = []
+        el.context = context;
         if (isClassComponent(el)) {
           instance = Inferno.render(el, domNode);
         } else {
@@ -74,6 +73,7 @@ class InfernoAdapter extends EnzymeAdapter {
           instance.children.componentWillUnmount.apply(instance.children);
         }
         instance = null;
+        Inferno.render(null, domNode);
         while (domNode.firstChild) {
           domNode.removeChild(domNode.firstChild);
         }
