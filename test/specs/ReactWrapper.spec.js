@@ -1210,7 +1210,7 @@ describe('mount', () => {
   });
 
   describe('.mount()', () => {
-    it.skip('should call componentWillUnmount()', () => {
+    it('should call componentWillUnmount()', () => {
       const willMount = sinon.spy();
       const didMount = sinon.spy();
       const willUnmount = sinon.spy();
@@ -1246,7 +1246,7 @@ describe('mount', () => {
   });
 
   describe('.unmount()', () => {
-    it.skip('should call componentWillUnmount()', () => {
+    it('should call componentWillUnmount()', () => {
       const spy = sinon.spy();
 
       class Foo extends Component {
