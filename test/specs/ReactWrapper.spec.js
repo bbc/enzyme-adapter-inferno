@@ -2845,7 +2845,7 @@ describe('mount', () => {
     });
 
     describe('stateless function components', () => {
-      it.skip('should attach and stuff', () => {
+      it('should attach and stuff', () => {
         const Foo = () => <div className="in-foo" />;
 
         const div = global.document.createElement('div');
@@ -2907,19 +2907,6 @@ describe('mount', () => {
 
         expect(document.body.childNodes).to.have.length(initialBodyChildren + 0);
         expect(div.childNodes).to.have.length(0);
-      });
-
-      it.skip('will attach to the body successfully', () => {
-        const Bar = () => <div className="in-bar" />;
-
-        const wrapper = mount(<Bar />, { attachTo: document.body });
-
-        expect(wrapper.find('.in-bar')).to.have.length(1);
-        expect(document.body.childNodes).to.have.length(1);
-
-        wrapper.detach();
-
-        expect(document.body.childNodes).to.have.length(0);
       });
     });
   });
