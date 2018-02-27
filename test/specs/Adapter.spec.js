@@ -1,5 +1,4 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import { Component, render } from 'inferno';
 import { expect } from 'chai';
 import jsdom from 'jsdom';
 import InfernoEnzymeAdapter from '../../src/InfernoEnzymeAdapter';
@@ -31,7 +30,7 @@ function cleanNode(node) {
 
 function renderToString(el) {
   document.body.innerHTML = '<div id="test"></div>';
-  Inferno.render(el, document.getElementById('test'));
+  render(el, document.getElementById('test'));
   const tree = document.getElementById('test');
   return tree.innerHTML;
 }

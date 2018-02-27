@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import { Component } from 'inferno';
 import {
   spaces,
   indent,

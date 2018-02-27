@@ -2,7 +2,7 @@
   "presets": ["env", "stage-3"],
   "env": {
     "test": {
-      "plugins": ["inferno"]
+      "plugins": [["inferno", { "import": true }]]
     }
   }
 }

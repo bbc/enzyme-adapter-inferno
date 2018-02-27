@@ -1,7 +1,6 @@
 /* globals document */
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-import createClass from 'inferno-create-class';
+import { Component } from 'inferno';
+import { createClass } from 'inferno-create-class';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import sinon from 'sinon';

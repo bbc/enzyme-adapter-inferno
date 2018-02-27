@@ -1,14 +1,11 @@
-import {
-  ComponentFunction,
-  ClassComponent,
-} from 'inferno-vnode-flags';
+import { VNodeFlags } from 'inferno-vnode-flags';
 
 function getNodeType(el) {
-  if (el.flags & ComponentFunction) {
+  if (el.flags & VNodeFlags.ComponentFunction) {
     return 'function';
   }
 
-  if (el._vNode || el.flags & ClassComponent || el.flags === 4) {
+  if (el.$V || el.flags & VNodeFlags.ComponentClass || el.flags === 4) {
     return 'class';
   }
 
@@ -54,8 +51,8 @@ export default function toTree(el) {
   const nodeType = getNodeType(el);
 
   if (nodeType === 'class') {
-    if (!el._vNode) {
-      if(el.children) {
+    if (!el.$V) {
+      if (el.children) {
         el.children.refs = {}; // eslint-disable-line no-param-reassign
       }
       return {
@@ -65,18 +62,18 @@ export default function toTree(el) {
         key: el.key,
         ref: el.ref,
         instance: el.children,
-        rendered: !el.children ? null : toTree(el.children._lastInput),
+        rendered: !el.children ? null : toTree(el.children.$LI),
       };
     }
     el.refs = {}; // eslint-disable-line no-param-reassign
     return {
       nodeType,
-      type: el._vNode.type,
+      type: el.$V.type,
       props,
-      key: el._vNode.key,
-      ref: el._vNode.ref,
+      key: el.$V.key,
+      ref: el.$V.ref,
       instance: el,
-      rendered: toTree(el._lastInput),
+      rendered: toTree(el.$LI),
     };
   }
   return {
