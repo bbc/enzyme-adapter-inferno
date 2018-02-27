@@ -13,7 +13,7 @@ export function mapNativeEventNames(event) {
     keyup: 'keyUp',
     keypress: 'keyPress',
     contextmenu: 'contextMenu',
-    dblclick: 'doubleClick',
+    dblclick: 'dblClick',
     doubleclick: 'doubleClick', // kept for legacy. TODO: remove with next major.
     dragend: 'dragEnd',
     dragenter: 'dragEnter',
