@@ -9,6 +9,7 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && npm run unit",
     "prepublish": "npm run build",
+    "prepare": "npm run build",
     "unit": "BABEL_ENV=test mocha --exit --require test/_helpers/setup --compilers js:babel-core/register,jsx:babel-core/register --recursive test"
   },
   "author": "Edd Yerburgh",
