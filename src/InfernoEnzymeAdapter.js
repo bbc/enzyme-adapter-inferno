@@ -87,7 +87,7 @@ class InfernoAdapter extends EnzymeAdapter {
       simulateEvent(node, event, ...args) {
         let hostNode = node;
         const eventName = mapNativeEventNames(event);
-        if (node.type !== 'host') {
+        if (node.nodeType !== 'host') {
           hostNode = Array.isArray(node.rendered) ? node.rendered[0] : node.rendered;
         }
         const handler = hostNode.props[`on${upperCasefirst(eventName)}`];
