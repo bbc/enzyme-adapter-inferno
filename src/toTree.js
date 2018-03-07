@@ -24,6 +24,11 @@ function childrenToTree(node) {
     return node.children.map(toTree);
   }
 
+  if (node.children.flags & VNodeFlags.Text) {
+    const tree = toTree(node.children);
+    return tree ? [tree] : tree;
+  }
+
   return toTree(node.children);
 }
 
