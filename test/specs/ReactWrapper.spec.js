@@ -1,5 +1,5 @@
 /* globals document */
-import { Component } from 'inferno';
+import { Component, linkEvent } from 'inferno';
 import { createClass } from 'inferno-create-class';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
@@ -1315,6 +1315,49 @@ describe('mount', () => {
       wrapper.simulate('click', { someSpecialData: 'foo' });
       expect(spy.calledOnce).to.equal(true);
       expect(spy.args[0][0].someSpecialData).to.equal('foo');
+    });
+
+    it('should call linkEvent properly on components', () => {
+      class Foo extends Component {
+        constructor(props) {
+          super(props);
+          this.state = { count: 0 };
+          this.incrementCount = this.incrementCount.bind(this);
+        }
+
+        incrementCount(by) {
+          this.setState({ count: this.state.count + by });
+        }
+
+        render() {
+          return (
+            <a
+              className={`clicks-${this.state.count}`}
+              onClick={linkEvent(5, this.incrementCount)}
+            >
+              foo
+            </a>
+          );
+        }
+      }
+
+      const wrapper = mount(<Foo />);
+
+      expect(wrapper.find('.clicks-0').length).to.equal(1);
+      wrapper.simulate('click');
+      expect(wrapper.find('.clicks-5').length).to.equal(1);
+    });
+
+    it('should call linkEvent properly on functional components', () => {
+      const spy = sinon.spy();
+      const eventStub = { object: { args: 'boo' } };
+      const Foo = ({ handle }) => <div onClick={linkEvent(5, handle)}>Hi</div>;
+
+      const wrapper = mount(<Foo handle={spy} />);
+      wrapper.simulate('click', eventStub);
+
+      expect(spy.calledOnce).to.equal(true);
+      expect(spy.calledWith(5, eventStub)).to.equal(true);
     });
 
     describe('Normalizing JS event names', () => {
