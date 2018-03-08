@@ -1,7 +1,7 @@
 {
   "name": "enzyme-adapter-inferno",
   "description": "Inferno enzyme adapter",
-  "version": "0.1.0",
+  "version": "1.1.1",
   "main": "dist/InfernoEnzymeAdapter.js",
   "scripts": {
     "build": "babel src --out-dir dist",
@@ -9,6 +9,7 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && npm run unit",
     "prepublish": "npm run build",
+    "prepare": "npm run build",
     "unit": "BABEL_ENV=test mocha --exit --require test/_helpers/setup --compilers js:babel-core/register,jsx:babel-core/register --recursive test"
   },
   "author": "Edd Yerburgh",
@@ -16,7 +17,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-plugin-inferno": "^3.2.0",
+    "babel-plugin-inferno": "^4.0.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "chai": "^4.1.2",
@@ -25,12 +26,12 @@
     "eslint-config-airbnb-base": "^12.0.2",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-inferno": "^7.0.1",
-    "inferno": "^3.10.0",
-    "inferno-component": "^3.10.1",
-    "inferno-create-element": "^3.10.1",
-    "inferno-server": "^3.10.1",
-    "inferno-create-class": "^3.10.1",
-    "inferno-test-utils": "^3.10.0",
+    "inferno": "^4.0.4",
+    "inferno-component": "^4.0.4",
+    "inferno-create-class": "^4.0.4",
+    "inferno-create-element": "^4.0.4",
+    "inferno-server": "^4.0.4",
+    "inferno-test-utils": "^4.0.4",
     "jest": "^21.2.1",
     "jsdom": "6.1.0",
     "mocha": "3.5.3",
@@ -38,12 +39,12 @@
     "sinon": "^4.0.2"
   },
   "peerDependencies": {
-    "enzyme": "^3.0.0",
-    "inferno": "^3.0.0",
-    "inferno-create-element": "^3.10.1",
-    "inferno-server": "^3.10.1"
+    "enzyme": "^3.1.0",
+    "inferno": "^4.0.4",
+    "inferno-create-element": "^4.0.4",
+    "inferno-server": "^4.0.4"
   },
   "dependencies": {
-    "inferno-vnode-flags": "^3.10.1"
+    "inferno-vnode-flags": "^4.0.4"
   }
 }

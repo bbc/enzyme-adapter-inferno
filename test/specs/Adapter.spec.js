@@ -1,5 +1,4 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import { Component, render } from 'inferno';
 import { expect } from 'chai';
 import jsdom from 'jsdom';
 import InfernoEnzymeAdapter from '../../src/InfernoEnzymeAdapter';
@@ -31,7 +30,7 @@ function cleanNode(node) {
 
 function renderToString(el) {
   document.body.innerHTML = '<div id="test"></div>';
-  Inferno.render(el, document.getElementById('test'));
+  render(el, document.getElementById('test'));
   const tree = document.getElementById('test');
   return tree.innerHTML;
 }
@@ -338,7 +337,7 @@ describe('adapter', () => {
                   nodeType: 'host',
                   type: 'span',
                   props: { className: 'Foo2' },
-                  key: '.0',
+                  key: '$0',
                   ref: null,
                   instance: null,
                   rendered: ['Literal'],
@@ -347,7 +346,7 @@ describe('adapter', () => {
                   nodeType: 'function',
                   type: Qoo,
                   props: {},
-                  key: '.1',
+                  key: '$1',
                   ref: null,
                   instance: null,
                   rendered: {
@@ -458,7 +457,7 @@ describe('adapter', () => {
                   nodeType: 'host',
                   type: 'span',
                   props: { className: 'Foo2' },
-                  key: '.0',
+                  key: '$0',
                   ref: null,
                   instance: null,
                   rendered: ['Literal'],
@@ -467,7 +466,7 @@ describe('adapter', () => {
                   nodeType: 'class',
                   type: Qoo,
                   props: {},
-                  key: '.1',
+                  key: '$1',
                   ref: null,
                   instance: null,
                   rendered: {

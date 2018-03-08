@@ -1,24 +1,22 @@
-import {
-  EnzymeAdapter,
-} from 'enzyme';
-import Inferno from 'inferno';
-import VNodeFlags from 'inferno-vnode-flags';
-import InfernoServer from 'inferno-server';
-import createElement from 'inferno-create-element';
+import { EnzymeAdapter } from 'enzyme';
+import { VNodeFlags } from 'inferno-vnode-flags';
+import { renderToString } from 'inferno-server';
+import { options as InfernoOptions, render } from 'inferno';
+import { createElement } from 'inferno-create-element';
 import {
   mapNativeEventNames,
   throwError,
 } from './util';
 import toTree from './toTree';
 
-Inferno.options.recyclingEnabled = false;
+InfernoOptions.recyclingEnabled = false;
 
 function upperCasefirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function isClassComponent(el) {
-  return el.flags & VNodeFlags.ClassComponent;
+  return el.flags & VNodeFlags.ComponentClass;
 }
 
 class InfernoAdapter extends EnzymeAdapter {
@@ -55,11 +53,11 @@ class InfernoAdapter extends EnzymeAdapter {
     let instance = null;
     return {
       render(el, context, callback) {
-        Inferno.options.roots = [];
+        InfernoOptions.roots = [];
         if (isClassComponent(el)) {
-          instance = Inferno.render(el, domNode);
+          instance = render(el, domNode);
         } else {
-          Inferno.render(el, domNode);
+          render(el, domNode);
           instance = el;
         }
         if (typeof callback === 'function') {
@@ -69,11 +67,17 @@ class InfernoAdapter extends EnzymeAdapter {
 
       unmount() {
         instance = null;
-        Inferno.render(null, domNode);
+        render(null, domNode);
       },
 
       getNode() {
-        return instance ? toTree(instance) : null;
+        if (instance) {
+          if (instance.$V) {
+            return toTree(instance.$V);
+          }
+          return toTree(instance);
+        }
+        return null;
       },
 
       batchedUpdates(fn) {
@@ -83,7 +87,7 @@ class InfernoAdapter extends EnzymeAdapter {
       simulateEvent(node, event, ...args) {
         let hostNode = node;
         const eventName = mapNativeEventNames(event);
-        if (node.type !== 'host') {
+        if (node.nodeType !== 'host') {
           hostNode = Array.isArray(node.rendered) ? node.rendered[0] : node.rendered;
         }
         const handler = hostNode.props[`on${upperCasefirst(eventName)}`];
@@ -96,7 +100,7 @@ class InfernoAdapter extends EnzymeAdapter {
   createStringRenderer() {
     return {
       render(el) {
-        return InfernoServer.renderToString(el);
+        return renderToString(el);
       },
     };
   }

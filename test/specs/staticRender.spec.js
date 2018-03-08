@@ -1,5 +1,4 @@
-import createClass from 'inferno-create-class';
-import Inferno from 'inferno';
+import { createClass } from 'inferno-create-class';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { render } from 'enzyme';
