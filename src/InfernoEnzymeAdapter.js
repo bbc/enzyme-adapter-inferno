@@ -92,7 +92,11 @@ class InfernoAdapter extends EnzymeAdapter {
         }
         const handler = hostNode.props[`on${upperCasefirst(eventName)}`];
         if (handler) {
-          handler(...args);
+          if (typeof handler === 'function') {
+            handler(...args);
+          } else {
+            handler.event(handler.data, ...args);
+          }
         }
       },
     };
