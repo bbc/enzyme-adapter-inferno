@@ -26,12 +26,12 @@
     "eslint-config-airbnb-base": "^12.0.2",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-inferno": "^7.0.1",
-    "inferno": "^4.0.4",
-    "inferno-component": "^4.0.4",
-    "inferno-create-class": "^4.0.4",
-    "inferno-create-element": "^4.0.4",
-    "inferno-server": "^4.0.4",
-    "inferno-test-utils": "^4.0.4",
+    "inferno": "^5.0.5",
+    "inferno-component": "^5.0.5",
+    "inferno-create-class": "^5.0.5",
+    "inferno-create-element": "^5.0.5",
+    "inferno-server": "^5.0.5",
+    "inferno-test-utils": "^5.0.5",
     "jest": "^21.2.1",
     "jsdom": "6.1.0",
     "mocha": "3.5.3",
@@ -40,11 +40,11 @@
   },
   "peerDependencies": {
     "enzyme": "^3.1.0",
-    "inferno": "^4.0.4",
-    "inferno-create-element": "^4.0.4",
-    "inferno-server": "^4.0.4"
+    "inferno": "4.x || 5.x",
+    "inferno-create-element": "4.x || 5.x",
+    "inferno-server": "4.x || 5.x"
   },
   "dependencies": {
-    "inferno-vnode-flags": "^4.0.4"
+    "inferno-vnode-flags": "^5.0.5"
   }
 }
