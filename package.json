@@ -8,6 +8,7 @@
     "lint": "eslint . --ignore-path .gitignore ",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && npm run unit",
+    "publish": "semantic-release",
     "prepublish": "npm run build",
     "prepare": "npm run build",
     "unit": "BABEL_ENV=test mocha --exit --require test/_helpers/setup --compilers js:babel-core/register,jsx:babel-core/register --recursive test"
@@ -36,6 +37,7 @@
     "jsdom": "6.1.0",
     "mocha": "3.5.3",
     "prop-types": "^15.6.0",
+    "semantic-release": "^15.5.0",
     "sinon": "^4.0.2"
   },
   "peerDependencies": {
