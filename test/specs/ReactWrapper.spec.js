@@ -970,6 +970,7 @@ describe('mount', () => {
           super(props);
           this.componentWillReceiveProps = spy;
         }
+
         render() {
           return (
             <div className={this.props.id}>
@@ -1221,6 +1222,7 @@ describe('mount', () => {
           this.componentWillMount = willMount;
           this.componentDidMount = didMount;
         }
+
         render() {
           return (
             <div className={this.props.id}>
@@ -1253,6 +1255,7 @@ describe('mount', () => {
           super(props);
           this.componentWillUnmount = spy;
         }
+
         render() {
           return (
             <div className={this.props.id}>
@@ -1422,6 +1425,7 @@ describe('mount', () => {
           super(props);
           this.state = { id: 'foo' };
         }
+
         render() {
           return (
             <div className={this.state.id} />
@@ -1442,9 +1446,11 @@ describe('mount', () => {
           super(props);
           this.state = { mounted: false };
         }
+
         componentDidMount() {
           this.setState({ mounted: true });
         }
+
         render() {
           return <div>{this.state.mounted ? 'a' : 'b'}</div>;
         }
@@ -1459,6 +1465,7 @@ describe('mount', () => {
           super(props);
           this.state = { id: 'foo' };
         }
+
         render() {
           return (
             <div className={this.state.id} />
@@ -1478,6 +1485,7 @@ describe('mount', () => {
           super(props);
           this.state = { id: 'foo' };
         }
+
         render() {
           return (
             <div className={this.state.id} />
@@ -1495,6 +1503,7 @@ describe('mount', () => {
           super(props);
           this.state = { id: 'foo' };
         }
+
         render() {
           return (
             <div className={this.state.id} />
@@ -1857,6 +1866,7 @@ describe('mount', () => {
           super(props);
           this.state = { foo: 'foo' };
         }
+
         render() { return <div />; }
       }
       const wrapper = mount(<Foo />);
@@ -1869,6 +1879,7 @@ describe('mount', () => {
           super(props);
           this.state = { foo: 'foo' };
         }
+
         render() { return <div />; }
       }
       const wrapper = mount(<Foo />);
@@ -1882,6 +1893,7 @@ describe('mount', () => {
           super(props);
           this.state = { foo: 'foo' };
         }
+
         render() { return <div />; }
       }
       const wrapper = mount(<Foo />);

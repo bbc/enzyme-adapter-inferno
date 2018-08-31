@@ -101,6 +101,7 @@ class InfernoAdapter extends EnzymeAdapter {
       },
     };
   }
+
   createStringRenderer() {
     return {
       render(el) {
