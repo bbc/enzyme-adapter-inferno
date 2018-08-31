@@ -20,6 +20,10 @@ function isClassComponent(el) {
 }
 
 class InfernoAdapter extends EnzymeAdapter {
+  isValidElement(el) {
+    return el && (el.flags !== 0);
+  }
+
   nodeToHostNode(node) {
     if (node.nodeType === 'class' || node.nodeType === 'function') {
       if (!node.rendered) {
