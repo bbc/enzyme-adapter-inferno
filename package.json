@@ -17,28 +17,28 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-plugin-inferno": "^4.0.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-inferno": "^5.1.0",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-stage-3": "^6.24.1",
     "chai": "^4.1.2",
-    "enzyme": "^3.1.0",
-    "eslint": "^4.8.0",
-    "eslint-config-airbnb-base": "^12.0.2",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-inferno": "^7.0.1",
-    "inferno": "^5.0.5",
-    "inferno-component": "^5.0.5",
-    "inferno-create-class": "^5.0.5",
-    "inferno-create-element": "^5.0.5",
-    "inferno-server": "^5.0.5",
-    "inferno-test-utils": "^5.0.5",
-    "jest": "^21.2.1",
-    "jsdom": "6.1.0",
-    "mocha": "3.5.3",
-    "prop-types": "^15.6.0",
-    "semantic-release": "^15.5.0",
-    "sinon": "^4.0.2"
+    "enzyme": "^3.5.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-inferno": "^7.10.0",
+    "inferno": "^5.4.2",
+    "inferno-component": "^5.4.2",
+    "inferno-create-class": "^5.4.2",
+    "inferno-create-element": "^5.4.2",
+    "inferno-server": "^5.4.2",
+    "inferno-test-utils": "^5.4.2",
+    "jest": "^23.5.0",
+    "jsdom": "^7.2.2",
+    "mocha": "^5.2.0",
+    "prop-types": "^15.6.2",
+    "semantic-release": "^15.9.12",
+    "sinon": "^6.1.5"
   },
   "peerDependencies": {
     "enzyme": "^3.1.0",
@@ -47,6 +47,6 @@
     "inferno-server": "4.x || 5.x"
   },
   "dependencies": {
-    "inferno-vnode-flags": "^5.0.5"
+    "inferno-vnode-flags": "^5.4.2"
   }
 }

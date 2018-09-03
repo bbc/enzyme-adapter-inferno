@@ -523,4 +523,24 @@ describe('adapter', () => {
     tree = renderer.getNode();
     expect(tree.rendered.props.count).to.equal(2);
   });
+
+  describe('determines valid element types', () => {
+    it('supports stateless function components', () => {
+      const SFC = () => null;
+
+      expect(adapter.isValidElement(<SFC/>)).to.equal(true);
+    });
+
+    it('supports custom components', () => {
+      class CustomComponent extends Component {
+        render() { return null; }
+      }
+
+      expect(adapter.isValidElement(<CustomComponent/>)).to.equal(true);
+    });
+
+    it('supports HTML elements', () => {
+      expect(adapter.isValidElement(<div/>)).to.equal(true);
+    });
+  });
 });
