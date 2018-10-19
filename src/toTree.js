@@ -69,6 +69,11 @@ const renderHostNode = (hostNode) => {
   return toTree(hostNode.children);
 };
 
+const renderClassNode = (classNode) => {
+  if (!classNode.children) { return null; }
+  return toTree(classNode.children.$LI); // $LI == Last Input
+};
+
 const instantiateClassNode = (classNode) => {
   if (!classNode) { return classNode; }
   // eslint-disable-next-line no-param-reassign
@@ -87,7 +92,7 @@ export default function toTree(node) {
       key: node.key,
       ref: node.ref,
       instance: instantiateClassNode(node.children),
-      rendered: node.children ? toTree(node.children.$LI) : null, // $LI == Last Input
+      rendered: renderClassNode(node),
     };
     case nodeTypes.Function: return {
       nodeType: nodeTypeToString(nodeType),
