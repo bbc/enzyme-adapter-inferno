@@ -1,93 +1,103 @@
 import { VNodeFlags } from 'inferno-vnode-flags';
 
-function getNodeType(el) {
-  if (el.flags & VNodeFlags.ComponentFunction) {
+const flatten = a => a.reduce(
+  (acc, e) => (Array.isArray(e) ? [...acc, ...flatten(e)] : [...acc, e]), [],
+);
+
+const getNodeTypeForFlags = (flags) => {
+  const checkFlag = flag => flags & flag;
+
+  if (checkFlag(VNodeFlags.Text)) {
+    return 'text';
+  }
+  if (checkFlag(VNodeFlags.Fragment)) {
+    return 'fragment';
+  }
+  if (checkFlag(VNodeFlags.ComponentFunction)) {
     return 'function';
   }
-
-  if (el.$V || el.flags & VNodeFlags.ComponentClass || el.flags === 4) {
+  if (checkFlag(VNodeFlags.ComponentClass)) {
     return 'class';
   }
 
   return 'host';
-}
-function childrenToTree(node) {
-  if (!node.children) {
-    return undefined;
-  }
+};
 
-  if (typeof node === 'string') {
-    return [node];
-  }
+const getNodeType = (node) => {
+  // <span>foo</span> == { ..., children: 'foo' }
+  // (class ... render() { null }) == { ..., children: '' } ?
+  if (typeof node === 'string' && node !== '') { return 'string'; }
+  if (typeof node === 'number') { return 'number'; }
+  // <div><span>a</span><span>b</span></div>
+  // == { ..., children: [ { ..., children: 'a' }, { ..., children: 'b' } ] }
+  if (Array.isArray(node)) { return 'collection'; }
 
-  if (Array.isArray(node.children)) {
-    return node.children.map(toTree);
-  }
+  // render null
+  if (!node || !node.flags) { return 'unknown'; }
+  return getNodeTypeForFlags(node.flags);
+};
 
-  if (node.children.flags & VNodeFlags.Text) {
-    const tree = toTree(node.children);
-    return tree ? [tree] : tree;
-  }
-
-  return toTree(node.children);
-}
-
-export default function toTree(el) {
-  if (el === null || typeof el !== 'object') {
-    return [el];
-  }
-
-  if (!el.type && el.children !== 0 && !el.children) {
-    return null;
-  }
-
-  if (!el.type) {
-    return el.children.toString();
-  }
-
-  const props = {
-    ...el.props,
-  };
+const createProps = (el) => {
+  const { children, ...props } = { ...el.props }; // Remove children from properties
 
   if (el.className) {
-    props.className = el.className;
-  }
-
-  const nodeType = getNodeType(el);
-
-  if (nodeType === 'class') {
-    if (!el.$V) {
-      if (el.children) {
-        el.children.refs = {}; // eslint-disable-line no-param-reassign
-      }
-      return {
-        nodeType,
-        type: el.type,
-        props,
-        key: el.key,
-        ref: el.ref,
-        instance: el.children,
-        rendered: !el.children ? null : toTree(el.children.$LI),
-      };
-    }
-    el.refs = {}; // eslint-disable-line no-param-reassign
-    return {
-      nodeType,
-      type: el.$V.type,
-      props,
-      key: el.$V.key,
-      ref: el.$V.ref,
-      instance: el,
-      rendered: toTree(el.$LI),
+    return { // Move className into properties
+      ...props,
+      className: el.className,
     };
   }
-  return {
-    nodeType,
-    type: el.type,
-    props,
-    key: el.key,
-    ref: el.ref,
-    instance: nodeType === 'function' ? null : el.dom,
-    rendered: childrenToTree(el),
-  };
+
+  return props;
+};
+
+const renderHostNode = (hostNode) => {
+  if (!hostNode.children) { return [hostNode.children]; }
+  return toTree(hostNode.children);
+};
+
+const instantiateClassNode = (classNode) => {
+  if (!classNode) { return classNode; }
+  // eslint-disable-next-line no-param-reassign
+  classNode.refs = {};
+  return classNode;
+};
+
+export default function toTree(node) {
+  const nodeType = getNodeType(node);
+  switch (nodeType) {
+    case 'fragment': throw new Error('wip - type fragment not implemented');
+    case 'class': return {
+      nodeType,
+      type: node.type,
+      props: createProps(node),
+      key: node.key,
+      ref: node.ref,
+      instance: instantiateClassNode(node.children),
+      rendered: node.children ? toTree(node.children.$LI) : null, // $LI == Last Input
+    };
+    case 'function': return {
+      nodeType,
+      type: node.type,
+      props: createProps(node),
+      key: node.key,
+      ref: node.ref,
+      instance: null,
+      rendered: toTree(node.children),
+    };
+    case 'host': return {
+      nodeType,
+      type: node.type,
+      props: createProps(node),
+      key: node.key,
+      ref: node.ref,
+      instance: node.dom,
+      rendered: renderHostNode(node),
+    };
+    case 'text': return toTree(node.children);
+    case 'string': return [node];
+    case 'number': return [`${node}`];
+    case 'collection': return flatten(node.map(toTree));
+    case 'unknown': return null;
+    default: throw new Error(`EnzymeAdapter internal error - type ${nodeType} not supported`);
+  }
 }

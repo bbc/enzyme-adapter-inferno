@@ -59,7 +59,8 @@ class InfernoAdapter extends EnzymeAdapter {
       render(el, context, callback) {
         InfernoOptions.roots = [];
         if (isClassComponent(el)) {
-          instance = render(el, domNode);
+          render(el, domNode);
+          instance = domNode.$V;
         } else {
           render(el, domNode);
           instance = el;
@@ -75,13 +76,9 @@ class InfernoAdapter extends EnzymeAdapter {
       },
 
       getNode() {
-        if (instance) {
-          if (instance.$V) {
-            return toTree(instance.$V);
-          }
-          return toTree(instance);
-        }
-        return null;
+        if (!instance) { return null; }
+        if (!instance.length) { return toTree(instance); }
+        return toTree(Array.from(instance).map(toTree));
       },
 
       batchedUpdates(fn) {
