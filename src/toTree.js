@@ -1,5 +1,18 @@
 import { VNodeFlags } from 'inferno-vnode-flags';
 
+const nodeTypes = {
+  Text: Symbol('text'),
+  Fragment: Symbol('fragment'),
+  Function: Symbol('function'),
+  Class: Symbol('class'),
+  Host: Symbol('host'),
+  Null: Symbol('null'),
+  String: Symbol('string'),
+  Number: Symbol('number'),
+  Collection: Symbol('collection'),
+};
+const nodeTypeToString = nodeType => nodeType.toString().slice(7, -1);
+
 const flatten = a => a.reduce(
   (acc, e) => (Array.isArray(e) ? [...acc, ...flatten(e)] : [...acc, e]), [],
 );
@@ -8,32 +21,33 @@ const getNodeTypeForFlags = (flags) => {
   const checkFlag = flag => flags & flag;
 
   if (checkFlag(VNodeFlags.Text)) {
-    return 'text';
+    return nodeTypes.Text;
   }
   if (checkFlag(VNodeFlags.Fragment)) {
-    return 'fragment';
+    return nodeTypes.Fragment;
   }
   if (checkFlag(VNodeFlags.ComponentFunction)) {
-    return 'function';
+    return nodeTypes.Function;
   }
   if (checkFlag(VNodeFlags.ComponentClass)) {
-    return 'class';
+    return nodeTypes.Class;
   }
 
-  return 'host';
+  return nodeTypes.Host; // TODO: Don't return Host by default
 };
 
 const getNodeType = (node) => {
   // <span>foo</span> == { ..., children: 'foo' }
   // (class ... render() { null }) == { ..., children: '' } ?
-  if (typeof node === 'string' && node !== '') { return 'string'; }
-  if (typeof node === 'number') { return 'number'; }
+  if (typeof node === 'string' && node !== '') { return nodeTypes.String; }
+  if (typeof node === 'number') { return nodeTypes.Number; }
+
   // <div><span>a</span><span>b</span></div>
   // == { ..., children: [ { ..., children: 'a' }, { ..., children: 'b' } ] }
-  if (Array.isArray(node)) { return 'collection'; }
+  if (Array.isArray(node)) { return nodeTypes.Collection; }
 
   // render null
-  if (!node || !node.flags) { return 'unknown'; }
+  if (!node || !node.flags) { return nodeTypes.Null; }
   return getNodeTypeForFlags(node.flags);
 };
 
@@ -65,9 +79,9 @@ const instantiateClassNode = (classNode) => {
 export default function toTree(node) {
   const nodeType = getNodeType(node);
   switch (nodeType) {
-    case 'fragment': throw new Error('wip - type fragment not implemented');
-    case 'class': return {
-      nodeType,
+    case nodeTypes.Fragment: throw new Error('wip - type fragment not implemented');
+    case nodeTypes.Class: return {
+      nodeType: nodeTypeToString(nodeType),
       type: node.type,
       props: createProps(node),
       key: node.key,
@@ -75,8 +89,8 @@ export default function toTree(node) {
       instance: instantiateClassNode(node.children),
       rendered: node.children ? toTree(node.children.$LI) : null, // $LI == Last Input
     };
-    case 'function': return {
-      nodeType,
+    case nodeTypes.Function: return {
+      nodeType: nodeTypeToString(nodeType),
       type: node.type,
       props: createProps(node),
       key: node.key,
@@ -84,8 +98,8 @@ export default function toTree(node) {
       instance: null,
       rendered: toTree(node.children),
     };
-    case 'host': return {
-      nodeType,
+    case nodeTypes.Host: return {
+      nodeType: nodeTypeToString(nodeType),
       type: node.type,
       props: createProps(node),
       key: node.key,
@@ -93,11 +107,11 @@ export default function toTree(node) {
       instance: node.dom,
       rendered: renderHostNode(node),
     };
-    case 'text': return toTree(node.children);
-    case 'string': return [node];
-    case 'number': return [`${node}`];
-    case 'collection': return flatten(node.map(toTree));
-    case 'unknown': return null;
+    case nodeTypes.Text: return toTree(node.children);
+    case nodeTypes.String: return [node];
+    case nodeTypes.Number: return [`${node}`];
+    case nodeTypes.Collection: return flatten(node.map(toTree));
+    case nodeTypes.Null: return null;
     default: throw new Error(`EnzymeAdapter internal error - type ${nodeType} not supported`);
   }
 }
