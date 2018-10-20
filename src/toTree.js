@@ -84,7 +84,6 @@ const instantiateClassNode = (classNode) => {
 export default function toTree(node) {
   const nodeType = getNodeType(node);
   switch (nodeType) {
-    case nodeTypes.Fragment: throw new Error('wip - type fragment not implemented');
     case nodeTypes.Class: return {
       nodeType: nodeTypeToString(nodeType),
       type: node.type,
@@ -112,6 +111,7 @@ export default function toTree(node) {
       instance: node.dom,
       rendered: renderHostNode(node),
     };
+    case nodeTypes.Fragment:
     case nodeTypes.Text: return toTree(node.children);
     case nodeTypes.String: return [node];
     case nodeTypes.Number: return [`${node}`];
